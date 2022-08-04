@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<siren-definition>
+    <siren-config>
+
+    </siren-config>
+    <sonemes>
+        <soneme name="Affirmative" id="affirmative">
+            <snode-static step="0" description="">
+            </snode-static>
+        </soneme>
+        <soneme name="Negative" id="negative">
+            <snode-static step="0" description="">
+            </snode-static>
+        </soneme>
+        <soneme name="Attention" id="attention">
+            <snode-static step="0" description="">
+            </snode-static>
+        </soneme>        
+        <soneme name="Wait For Command" id="wait_for_command">
+            <snode-static step="0" description="">
+            </snode-static>
+        </soneme>
+        <soneme name="Follow Me" id="follow_me">
+            <snode-static step="0" description="">
+            </snode-static>
+        </soneme>
+        <soneme name="Follow You" id="follow_you">
+            <snode-static step="0" description="">
+            </snode-static>
+        </soneme>
+        <soneme name="Come To Me" id="come">
+            <snode-static step="0" description="">
+            </snode-static>
+        </soneme>
+        <soneme name="Danger" id="danger">
+            <snode-static step="0" description="">
+            </snode-static>
+        </soneme>
+        <soneme name="Malfuction" id="malfunction">
+            <snode-static step="0" description="">
+            </snode-static>
+        </soneme>
+        <soneme name="Go To Direction" id="go_direction">
+            <snode-param step="0" description="">
+            </snode-param>
+        </soneme>
+        <soneme name="Stay" id="stay">
+            <snode-static step="0" description="">
+            </snode-static>
+        </soneme>
+        <soneme name="Which Way" id="which_way">
+            <snode-static step="0" description="">
+            </snode-static>
+        </soneme>
+        <soneme name="Remaining Battery" id="battery_remaining">
+            <snode-param step="0" description="">
+            </snode-param>
+        </soneme>
+    </sonemes>
+</siren-definition>

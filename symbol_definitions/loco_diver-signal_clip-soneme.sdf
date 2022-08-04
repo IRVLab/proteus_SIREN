@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<siren-definition>
+    <siren-config>
+        <clips pkg="proteus_siren" directory="audio_files"></clips>
+    </siren-config>
+    <sonemes>
+        <soneme name="Affirmative" id="affirmative">
+            <snode-static step="0" description="">
+                <audio volume="75" speed="1">affirmative.ogg</audio>
+            </snode-static>
+        </soneme>
+        <soneme name="Negative" id="negative">
+            <snode-static step="0" description="">
+                <audio volume="75" speed="1">no.ogg</audio>
+            </snode-static>
+        </soneme>
+        <soneme name="Attention" id="attention">
+            <snode-static step="0" description="">
+                <audio volume="85" speed="1">attention.ogg</audio>
+            </snode-static>
+        </soneme>        
+        <soneme name="Wait For Command" id="wait_for_command">
+            <snode-static step="0" description="">
+                <audio volume="75" speed="1">wait.ogg</audio>
+            </snode-static>
+        </soneme>
+        <soneme name="Follow Me" id="follow_me">
+            <snode-static step="0" description="">
+                <audio volume="75" speed="1">follow_me.ogg</audio>
+            </snode-static>
+        </soneme>
+        <soneme name="Follow You" id="follow_you">
+            <snode-static step="0" description="">
+                <audio volume="75" speed="1">follow_you.ogg</audio>
+            </snode-static>
+        </soneme>
+        <soneme name="Come To Me" id="come">
+            <snode-static step="0" description="">
+                <audio volume="75" speed="1">come.ogg</audio>
+            </snode-static>
+        </soneme>
+        <soneme name="Danger" id="danger">
+            <snode-static step="0" description="">
+                <audio volume="85" speed="1">danger.ogg</audio>
+            </snode-static>
+        </soneme>
+        <soneme name="Malfuction" id="malfunction">
+            <snode-static step="0" description="">
+                <audio volume="85" speed="1">malfunction.ogg</audio>
+            </snode-static>
+        </soneme>
+        <soneme name="Go To Direction" id="go_direction">
+            <snode-param step="0" description="">
+                <variable-audio filename="go_{}.ogg" optionss="up;upright;right;downright;down;downleft;left;upleft;backwards;forwards"></variable-audio>
+            </snode-param>
+        </soneme>
+        <soneme name="Stay" id="stay">
+            <snode-static step="0" description="">
+                <audio volume="75" speed="1">stay.ogg</audio>
+            </snode-static>
+        </soneme>
+        <soneme name="Which Way" id="which_way">
+            <snode-static step="0" description="">
+                <audio volume="75" speed="1">which_way.ogg</audio>
+            </snode-static>
+        </soneme>
+        <soneme name="Remaining Battery" id="battery_remaining">
+            <snode-param step="0" description="">
+                <variable-audio volume="75" speed="1" filename="batt_{}.ogg" optionss="100;90;80;75;70;60;50;40;30;25;20;10;5;0"></variable-audio>
+            </snode-param>
+        </soneme>
+    </sonemes>
+</siren-definition>
