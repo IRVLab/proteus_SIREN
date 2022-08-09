@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-from email.mime import audio
 import rospy
 from rosnode import get_node_names
 from tf.transformations import euler_from_quaternion, quaternion_from_euler
@@ -11,7 +10,7 @@ import sys
 import xml.etree.ElementTree as ET
 from proteus.srv import SymbolTrigger, SymbolDirectional, SymbolTarget, SymbolQuantity
 from proteus.soneme import Soneme, SNode, SNodeClip, SNodeSpeech
-from proteus.siren import SIRENConfig
+from proteus.siren import SirenConfig
 
 rospy.init_node('ogg_siren_server', argv=None, anonymous=True)
 siren_config = None
@@ -144,7 +143,7 @@ if __name__ == '__main__':
                 sonemes[s.id] = s
         elif item.tag == 'siren-config':
             #Special case for parsing the meta information.
-            siren_config = SIRENConfig()
+            siren_config = SirenConfig()
             siren_config.parse_from_xml(item)
 
     # Check for symbol matchup.
@@ -171,7 +170,7 @@ if __name__ == '__main__':
         else:
             rospy.logwarn("Unexpected call type {} for soneme {}".format(soneme.call_type, soneme.id))
 
-        service_name = 'siren/audio/'+ soneme.name.replace(' ', '_')
+        service_name = 'siren/clip/'+ soneme.name.replace(' ', '_')
 
         rospy.loginfo('Advertising a service for soneme %s at service endpoint: %s'%(soneme.id, service_name))
         rospy.Service(service_name, service_class, lambda req, soneme=soneme: service_cb(req, soneme))

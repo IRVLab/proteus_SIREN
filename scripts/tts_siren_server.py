@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-from email.mime import audio
 import rospy
 from rosnode import get_node_names
 from tf.transformations import euler_from_quaternion, quaternion_from_euler
@@ -10,7 +9,7 @@ import sys
 import xml.etree.ElementTree as ET
 from proteus.srv import SymbolTrigger, SymbolDirectional, SymbolTarget, SymbolQuantity
 from proteus.soneme import Soneme, SNode, SNodeClip, SNodeSpeech
-from proteus.siren import SIRENConfig
+from proteus.siren import SirenConfig
 
 rospy.init_node('ogg_siren_server', argv=None, anonymous=True)
 siren_config = None
@@ -28,10 +27,9 @@ def cardinalize(transform):
     elif rpy[1] < 0:
         ret+= "down"
 
-    # Don't need to do this for a search string.
-    # # Add a conjunction if there's pitch involved.
-    # if rpy[1] != 0 and rpy[2] != 0:
-    #     ret+= " and "
+    # Add a conjunction if there's pitch involved.
+    if rpy[1] != 0 and rpy[2] != 0:
+        ret+= " and "
 
     # Yaw handling
     if rpy[2] > 0:
@@ -63,15 +61,18 @@ def service_cb(req, soneme):
 def execute_trigger(req, soneme):
     for s in soneme.snodes:
         for speech in s.speeches:
-            voice = Voice(lang=siren_config.voice_language, speed=(siren_config.voice_wpm * speech.speed), voice_id= siren_config.voice_id)
+            voice = Voice(lang=siren_config.voice_language, speed=int((siren_config.voice_wpm * speech.speed)), voice_id= siren_config.voice_id)
             voice.say(speech.text)
+    return True
 
 def execute_directional(req, soneme):
     for s in soneme.snodes:
         for speech in s.speeches:
-            voice = Voice(lang=siren_config.voice_language, speed=(siren_config.voice_wpm * speech.speed), voice_id= siren_config.voice_id)
+            voice = Voice(lang=siren_config.voice_language, speed=int((siren_config.voice_wpm * speech.speed)), voice_id= siren_config.voice_id)
             direction = cardinalize(req.transform)
+            print(direction)
             voice.say(speech.get_dyn_text(direction))
+    return True
 
 def execute_target(req, soneme):
     pass
@@ -79,9 +80,11 @@ def execute_target(req, soneme):
 def execute_quantity(req, soneme):
     for s in soneme.snodes:
         for speech in s.speeches:
-            voice = Voice(lang=siren_config.voice_language, speed=(siren_config.voice_wpm * speech.speed), voice_id= siren_config.voice_id)
-            quantity = str(req.quantity * 100) + " percent"
+            voice = Voice(lang=siren_config.voice_language, speed=int((siren_config.voice_wpm * speech.speed)), voice_id= siren_config.voice_id)
+            quantity = str(int(req.quantity * 100)) + " percent"
             voice.say(speech.get_dyn_text(quantity))
+
+    return True
 
 if __name__ == '__main__':
     rospy.loginfo('Initializing the SIREN server')
@@ -104,7 +107,7 @@ if __name__ == '__main__':
 
      # Find soneme language definition file
     rospy.loginfo("Loading vector information...")
-    siren_info = rospy.get_param('vectors/out/ClipSIREN')
+    siren_info = rospy.get_param('vectors/out/TTSSiren')
     siren_def_file = siren_info['definition_file']
 
     # Find symbol definitions
@@ -127,7 +130,7 @@ if __name__ == '__main__':
                 sonemes[s.id] = s
         elif item.tag == 'siren-config':
             #Special case for parsing the meta information.
-            siren_config = SIRENConfig()
+            siren_config = SirenConfig()
             siren_config.parse_from_xml(item)
 
     # Check for symbol matchup.
@@ -136,7 +139,7 @@ if __name__ == '__main__':
             s = sonemes[key]
             if sym == s.id:
                 rospy.loginfo("Found match beteween symbol %s and soneme %s, associating data."%(sym, s.id))
-                rospy.logdebug("Call type: %s"%(symbols.get(s).get('call_type')))
+                rospy.logdebug("Call type: %s"%(symbols.get(sym).get('call_type')))
                 s.set_call_type(symbols.get(sym).get('call_type'))
                 break
     
@@ -154,7 +157,7 @@ if __name__ == '__main__':
         else:
             rospy.logwarn("Unexpected call type {} for soneme {}".format(soneme.call_type, soneme.id))
 
-        service_name = 'siren/audio/'+ soneme.name.replace(' ', '_')
+        service_name = 'siren/tts/'+ soneme.name.replace(' ', '_')
 
         rospy.loginfo('Advertising a service for soneme %s at service endpoint: %s'%(soneme.id, service_name))
         rospy.Service(service_name, service_class, lambda req, soneme=soneme: service_cb(req, soneme))

@@ -1,0 +1,5 @@
+<launch>
+    <group ns="loco/proteus/">
+        <node name="loco_proteus_clip_siren" pkg="proteus_siren" type="clip_siren_server.py" output="screen"/>
+    </group>
+</launch>
