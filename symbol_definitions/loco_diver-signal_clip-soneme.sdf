@@ -5,69 +5,69 @@
     </siren-config>
     <sonemes>
         <soneme name="Affirmative" id="affirmative">
-            <snode-static step="0" description="">
-                <audio volume="75" speed="1">affirmative.ogg</audio>
-            </snode-static>
+            <snode-clip step="0" description="">
+                <audio volume="75" speed="1" filename="affirmative.ogg"></audio>
+            </snode-clip>
         </soneme>
         <soneme name="Negative" id="negative">
-            <snode-static step="0" description="">
-                <audio volume="75" speed="1">no.ogg</audio>
-            </snode-static>
+            <snode-clip step="0" description="">
+                <audio volume="75" speed="1" filename="no.ogg"></audio>
+            </snode-clip>
         </soneme>
         <soneme name="Attention" id="attention">
-            <snode-static step="0" description="">
-                <audio volume="85" speed="1">attention.ogg</audio>
-            </snode-static>
+            <snode-clip step="0" description="">
+                <audio volume="85" speed="1" filename="attention.ogg"></audio>
+            </snode-clip>
         </soneme>        
         <soneme name="Wait For Command" id="wait_for_command">
-            <snode-static step="0" description="">
-                <audio volume="75" speed="1">wait.ogg</audio>
-            </snode-static>
+            <snode-clip step="0" description="">
+                <audio volume="75" speed="1" filename="wait.ogg"></audio>
+            </snode-clip>
         </soneme>
         <soneme name="Follow Me" id="follow_me">
-            <snode-static step="0" description="">
-                <audio volume="75" speed="1">follow_me.ogg</audio>
-            </snode-static>
+            <snode-clip step="0" description="">
+                <audio volume="75" speed="1" filename="follow_me.ogg"></audio>
+            </snode-clip>
         </soneme>
         <soneme name="Follow You" id="follow_you">
-            <snode-static step="0" description="">
-                <audio volume="75" speed="1">follow_you.ogg</audio>
-            </snode-static>
+            <snode-clip step="0" description="">
+                <audio volume="75" speed="1" filename="follow_you.ogg"></audio>
+            </snode-clip>
         </soneme>
         <soneme name="Come To Me" id="come">
-            <snode-static step="0" description="">
-                <audio volume="75" speed="1">come.ogg</audio>
-            </snode-static>
+            <snode-clip step="0" description="">
+                <audio volume="75" speed="1" filename="come.ogg"></audio>
+            </snode-clip>
         </soneme>
         <soneme name="Danger" id="danger">
-            <snode-static step="0" description="">
-                <audio volume="85" speed="1">danger.ogg</audio>
-            </snode-static>
+            <snode-clip step="0" description="">
+                <audio volume="85" speed="1" filename="danger.ogg"></audio>
+            </snode-clip>
         </soneme>
         <soneme name="Malfuction" id="malfunction">
-            <snode-static step="0" description="">
-                <audio volume="85" speed="1">malfunction.ogg</audio>
-            </snode-static>
+            <snode-clip step="0" description="">
+                <audio volume="85" speed="1" filename="malfunction.ogg"></audio>
+            </snode-clip>
         </soneme>
         <soneme name="Go To Direction" id="go_direction">
-            <snode-param step="0" description="">
-                <variable-audio filename="go_{}.ogg" optionss="up;upright;right;downright;down;downleft;left;upleft;backwards;forwards"></variable-audio>
-            </snode-param>
+            <snode-clip step="0" description="">
+                <variable-audio filename="go_{}.ogg" options="up;upright;right;downright;down;downleft;left;upleft;backwards;forwards"></variable-audio>
+            </snode-clip>
         </soneme>
         <soneme name="Stay" id="stay">
-            <snode-static step="0" description="">
-                <audio volume="75" speed="1">stay.ogg</audio>
-            </snode-static>
+            <snode-clip step="0" description="">
+                <audio volume="75" speed="1" filename="stay.ogg"></audio>
+            </snode-clip>
         </soneme>
         <soneme name="Which Way" id="which_way">
-            <snode-static step="0" description="">
-                <audio volume="75" speed="1">which_way.ogg</audio>
-            </snode-static>
+            <snode-clip step="0" description="">
+                <audio volume="75" speed="1" filename="which_way.ogg"></audio>
+            </snode-clip>
         </soneme>
         <soneme name="Remaining Battery" id="battery_remaining">
-            <snode-param step="0" description="">
-                <variable-audio volume="75" speed="1" filename="batt_{}.ogg" optionss="100;90;80;75;70;60;50;40;30;25;20;10;5;0"></variable-audio>
-            </snode-param>
+            <snode-clip step="0" description="">
+                <variable-audio volume="75" speed="1" filename="batt_{}.ogg" options="100;90;80;75;70;60;50;40;30;25;20;10;5;0"></variable-audio>
+            </snode-clip>
         </soneme>
     </sonemes>
 </siren-definition>
