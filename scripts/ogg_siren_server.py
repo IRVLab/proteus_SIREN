@@ -1,17 +1,57 @@
 #!/usr/bin/python3
+from email.mime import audio
 import rospy
 from rosnode import get_node_names
-from rospy import service
+from tf.transformations import euler_from_quaternion, quaternion_from_euler
 
-from playsound import playsound
+from pydub import AudioSegment
+from pydub.playback import play as pydub_play
 
 import sys
 import xml.etree.ElementTree as ET
 from proteus.srv import SymbolTrigger, SymbolDirectional, SymbolTarget, SymbolQuantity
-from proteus.soneme import Soneme, SNode, SNodeStatic, SNodeParam
+from proteus.soneme import Soneme, SNode, SNodeClip, SNodeSpeech
 from proteus.siren import SIRENConfig
 
 rospy.init_node('ogg_siren_server', argv=None, anonymous=True)
+siren_config = None
+
+def change_volume(audio_seg, volume=50):
+    pass
+
+def change_speed(audio_seg, speed=1.0):
+    return audio_seg._spawn(audio_seg.raw_data, overrides={"frame_rate": int(audio_seg.frame_rate * speed)})
+
+# Fit transform into text description of cardinal direction
+def cardinalize(transform):
+    q = transform.rotation
+    rpy = euler_from_quaternion([q.x, q.y, q.z, q.w]) #We only actually need pitch and yaw, roll is ignored here.
+
+    ret = "" # Return string.
+
+    # Pitch handling
+    if rpy[1] > 0:
+        ret+= "up"
+    elif rpy[1] < 0:
+        ret+= "down"
+
+    # Don't need to do this for a search string.
+    # # Add a conjunction if there's pitch involved.
+    # if rpy[1] != 0 and rpy[2] != 0:
+    #     ret+= " and "
+
+    # Yaw handling
+    if rpy[2] > 0:
+        ret+= "left"
+    elif rpy[2] < 0:
+        ret += "right"
+
+    return ret
+
+# Fit quantity into available bins.
+def bin_quant(quantity, bins):
+    return min(bins, key=lambda x:abs(x-quantity))
+
 
 # Farms out the execution of the soneme to the appropriate function
 def service_cb(req, soneme):
@@ -28,16 +68,37 @@ def service_cb(req, soneme):
         return False
 
 def execute_trigger(req, soneme):
-    pass
+    dir = siren_config.clip_location
+    for s in soneme.snodes:
+        for audio in s.audios:
+            clip = AudioSegment.from_ogg(dir + '/' + audio)
+            clip = change_speed(clip, audio.speed)
+            clip = change_volume(clip, audio.volume)
+            pydub_play(clip)
 
 def execute_directional(req, soneme):
-    pass
+    dir = siren_config.clip_location
+    cardinal_str = cardinalize(req.transform) # Fit transform into text description.
+
+    for s in soneme.snodes:
+        for audio in s.audios:
+            clip = AudioSegment.from_ogg(dir + '/' + audio.get_dyn_frame(cardinal_str))
+            clip = change_speed(clip, audio.speed)
+            clip = change_volume(clip, audio.volume)
+            pydub_play(clip)
 
 def execute_target(req, soneme):
     pass
 
 def execute_quantity(req, soneme):
-    pass
+    dir = siren_config.clip_location
+    for s in soneme.snodes:
+        for audio in s.audios:
+            val = bin_quant(req.quantity * 100, audio.options) #Fit battery value to closest available value.
+            clip = AudioSegment.from_ogg(dir + '/' + audio.get_dyn_fname(val))
+            clip = change_speed(clip, audio.speed)
+            clip = change_volume(clip, audio.volume)
+            pydub_play(clip)
 
 if __name__ == '__main__':
     rospy.loginfo('Initializing the SIREN server')

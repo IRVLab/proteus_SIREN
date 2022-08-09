@@ -1,18 +1,50 @@
 #!/usr/bin/python3
+from email.mime import audio
 import rospy
 from rosnode import get_node_names
-from rospy import service
-import rospkg
-rospack = rospkg.RosPack()
+from tf.transformations import euler_from_quaternion, quaternion_from_euler
 
+from voxpopuli import Voice
 
 import sys
 import xml.etree.ElementTree as ET
 from proteus.srv import SymbolTrigger, SymbolDirectional, SymbolTarget, SymbolQuantity
-from proteus.soneme import Soneme, SNode, SNodeStatic, SNodeParam
+from proteus.soneme import Soneme, SNode, SNodeClip, SNodeSpeech
 from proteus.siren import SIRENConfig
 
 rospy.init_node('ogg_siren_server', argv=None, anonymous=True)
+siren_config = None
+
+# Fit transform into text description of cardinal direction
+def cardinalize(transform):
+    q = transform.rotation
+    rpy = euler_from_quaternion([q.x, q.y, q.z, q.w]) #We only actually need pitch and yaw, roll is ignored here.
+
+    ret = "" # Return string.
+
+    # Pitch handling
+    if rpy[1] > 0:
+        ret+= "up"
+    elif rpy[1] < 0:
+        ret+= "down"
+
+    # Don't need to do this for a search string.
+    # # Add a conjunction if there's pitch involved.
+    # if rpy[1] != 0 and rpy[2] != 0:
+    #     ret+= " and "
+
+    # Yaw handling
+    if rpy[2] > 0:
+        ret+= "left"
+    elif rpy[2] < 0:
+        ret += "right"
+
+    return ret
+
+# Fit quantity into available bins.
+def bin_quant(quantity, bins):
+    return min(bins, key=lambda x:abs(x-quantity))
+
 
 # Farms out the execution of the soneme to the appropriate function
 def service_cb(req, soneme):
@@ -29,16 +61,27 @@ def service_cb(req, soneme):
         return False
 
 def execute_trigger(req, soneme):
-    pass
+    for s in soneme.snodes:
+        for speech in s.speeches:
+            voice = Voice(lang=siren_config.voice_language, speed=(siren_config.voice_wpm * speech.speed), voice_id= siren_config.voice_id)
+            voice.say(speech.text)
 
 def execute_directional(req, soneme):
-    pass
+    for s in soneme.snodes:
+        for speech in s.speeches:
+            voice = Voice(lang=siren_config.voice_language, speed=(siren_config.voice_wpm * speech.speed), voice_id= siren_config.voice_id)
+            direction = cardinalize(req.transform)
+            voice.say(speech.get_dyn_text(direction))
 
 def execute_target(req, soneme):
     pass
 
 def execute_quantity(req, soneme):
-    pass
+    for s in soneme.snodes:
+        for speech in s.speeches:
+            voice = Voice(lang=siren_config.voice_language, speed=(siren_config.voice_wpm * speech.speed), voice_id= siren_config.voice_id)
+            quantity = str(req.quantity * 100) + " percent"
+            voice.say(speech.get_dyn_text(quantity))
 
 if __name__ == '__main__':
     rospy.loginfo('Initializing the SIREN server')

@@ -2,6 +2,7 @@
 <siren-definition>
     <siren-config>
         <clips pkg="proteus_siren" directory="audio_files"></clips>
+        <volume-range low="0" high="25"></volume-range>
     </siren-config>
     <sonemes>
         <soneme name="Affirmative" id="affirmative">
