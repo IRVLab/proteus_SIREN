@@ -12,7 +12,7 @@
         </soneme>
         <soneme name="Negative" id="negative">
             <snode-clip step="0" description="">
-                <audio volume="75" speed="1" filename="no.ogg"></audio>
+                <audio volume="75" speed="1" filename="negative.ogg"></audio>
             </snode-clip>
         </soneme>
         <soneme name="Attention" id="attention">
@@ -52,7 +52,7 @@
         </soneme>
         <soneme name="Go To Direction" id="go_direction">
             <snode-clip step="0" description="">
-                <variable-audio filename="go_{}.ogg" options="up;upright;right;downright;down;downleft;left;upleft;backwards;forwards"></variable-audio>
+                <variable-audio volume="75" speed="1" filename="go_{}.ogg" options="up;upright;right;downright;down;downleft;left;upleft;backwards;forwards"></variable-audio>
             </snode-clip>
         </soneme>
         <soneme name="Stay" id="stay">

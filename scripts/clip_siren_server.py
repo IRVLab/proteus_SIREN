@@ -16,7 +16,7 @@ rospy.init_node('ogg_siren_server', argv=None, anonymous=True)
 siren_config = None
 
 def change_volume(audio_seg, volume=50):
-    pass
+    return audio_seg
 
 def change_speed(audio_seg, speed=1.0):
     return audio_seg._spawn(audio_seg.raw_data, overrides={"frame_rate": int(audio_seg.frame_rate * speed)})
@@ -49,7 +49,7 @@ def cardinalize(transform):
 
 # Fit quantity into available bins.
 def bin_quant(quantity, bins):
-    return min(bins, key=lambda x:abs(x-quantity))
+    return min(bins, key=lambda x:abs(int(x)-quantity))
 
 
 # Farms out the execution of the soneme to the appropriate function
@@ -70,10 +70,12 @@ def execute_trigger(req, soneme):
     dir = siren_config.clip_location
     for s in soneme.snodes:
         for audio in s.audios:
-            clip = AudioSegment.from_ogg(dir + '/' + audio)
+            clip = AudioSegment.from_ogg(dir + '/' + audio.filename)
             clip = change_speed(clip, audio.speed)
             clip = change_volume(clip, audio.volume)
             pydub_play(clip)
+
+    return True
 
 def execute_directional(req, soneme):
     dir = siren_config.clip_location
@@ -81,10 +83,12 @@ def execute_directional(req, soneme):
 
     for s in soneme.snodes:
         for audio in s.audios:
-            clip = AudioSegment.from_ogg(dir + '/' + audio.get_dyn_frame(cardinal_str))
+            clip = AudioSegment.from_ogg(dir + '/' + audio.get_dyn_fname(cardinal_str))
             clip = change_speed(clip, audio.speed)
             clip = change_volume(clip, audio.volume)
             pydub_play(clip)
+
+    return True
 
 def execute_target(req, soneme):
     pass
@@ -98,6 +102,8 @@ def execute_quantity(req, soneme):
             clip = change_speed(clip, audio.speed)
             clip = change_volume(clip, audio.volume)
             pydub_play(clip)
+
+    return True
 
 if __name__ == '__main__':
     rospy.loginfo('Initializing the SIREN server')
@@ -148,12 +154,11 @@ if __name__ == '__main__':
 
     # Check for symbol matchup.
     for sym in symbols:
-        for key in sonemes:
-            s = sonemes[key]
-            if sym == s.id:
-                rospy.loginfo("Found match beteween symbol %s and soneme %s, associating data."%(sym, s.id))
-                rospy.logdebug("Call type: %s"%(symbols.get(s).get('call_type')))
-                s.set_call_type(symbols.get(sym).get('call_type'))
+        for key,soneme in sonemes.items():
+            if sym == key:
+                rospy.loginfo("Found match beteween symbol %s and soneme %s, associating data."%(sym, key))
+                rospy.logdebug("Call type: %s"%(symbols.get(key).get('call_type')))
+                soneme.set_call_type(symbols.get(sym).get('call_type'))
                 break
     
     # Setup service calls
