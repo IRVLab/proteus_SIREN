@@ -1,56 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <siren-definition>
     <siren-config>
-
+        <synth-track id="nintendo" wave="square" vibrato="0" variance="0" attack="0.001" decay="0.01"></synth-track>
+        <synth-track id="atari" wave="triangle" vibrato="0" variance="0" attack="0.001" decay="0.01"></synth-track>
+        <synth-track id="saw" wave="square" vibrato="0" variance="0" attack="0.001" decay="0.01"></synth-track>
+        <synth-track id="fear" wave="triangle" vibrato="10" variance="10" attack="0.001" decay="0.01"></synth-track>
+        <synth-track id="woozy" wave="triangle" vibrato="2" variance="25" attack="0.001" decay="0.01"></synth-track>
     </siren-config>
     <sonemes>
         <soneme name="Affirmative" id="affirmative">
-            <snode-static step="0" description="">
-            </snode-static>
+            <snode-tone step="0" description="">
+                <tone track="nintendo" note="" octave="" end_note=""></tone>
+                <duration seconds=""></duration>
+            </snode-tone>
         </soneme>
         <soneme name="Negative" id="negative">
-            <snode-static step="0" description="">
-            </snode-static>
+            <snode-tone step="0" description="">
+            </snode-tone>
         </soneme>
         <soneme name="Attention" id="attention">
-            <snode-static step="0" description="">
-            </snode-static>
+            <snode-tone step="0" description="">
+            </snode-tone>
         </soneme>        
         <soneme name="Wait For Command" id="wait_for_command">
-            <snode-static step="0" description="">
-            </snode-static>
+            <snode-tone step="0" description="">
+            </snode-tone>
         </soneme>
         <soneme name="Follow Me" id="follow_me">
-            <snode-static step="0" description="">
-            </snode-static>
+            <snode-tone step="0" description="">
+            </snode-tone>
         </soneme>
         <soneme name="Follow You" id="follow_you">
-            <snode-static step="0" description="">
-            </snode-static>
+            <snode-tone step="0" description="">
+            </snode-tone>
         </soneme>
         <soneme name="Come To Me" id="come">
-            <snode-static step="0" description="">
-            </snode-static>
+            <snode-tone step="0" description="">
+            </snode-tone>
         </soneme>
         <soneme name="Danger" id="danger">
-            <snode-static step="0" description="">
-            </snode-static>
+            <snode-tone step="0" description="">
+            </snode-tone>
         </soneme>
         <soneme name="Malfuction" id="malfunction">
-            <snode-static step="0" description="">
-            </snode-static>
+            <snode-tone step="0" description="">
+            </snode-tone>
         </soneme>
         <soneme name="Go To Direction" id="go_direction">
             <snode-param step="0" description="">
             </snode-param>
         </soneme>
         <soneme name="Stay" id="stay">
-            <snode-static step="0" description="">
-            </snode-static>
+            <snode-tone step="0" description="">
+            </snode-tone>
         </soneme>
         <soneme name="Which Way" id="which_way">
-            <snode-static step="0" description="">
-            </snode-static>
+            <snode-tone step="0" description="">
+            </snode-tone>
         </soneme>
         <soneme name="Remaining Battery" id="battery_remaining">
             <snode-param step="0" description="">
