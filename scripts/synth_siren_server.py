@@ -5,14 +5,22 @@ from rospy import service
 import rospkg
 rospack = rospkg.RosPack()
 
+from tones import SINE_WAVE, SAWTOOTH_WAVE, SQUARE_WAVE, TRIANGLE_WAVE
+from tones.mixer import Mixer
+
+from pydub import AudioSegment
+import pydub.audio_segment
+from pydub.playback import play
 
 import sys
+from os.path import exists
 import xml.etree.ElementTree as ET
 from proteus.srv import SymbolTrigger, SymbolDirectional, SymbolTarget, SymbolQuantity
-from proteus.soneme import Soneme, SNode, SNodeStatic, SNodeParam
+from proteus.soneme import Soneme, SNode, SNodeTone
 from proteus.siren import SirenConfig
 
 rospy.init_node('ogg_siren_server', argv=None, anonymous=True)
+siren_config = None
 
 # Farms out the execution of the soneme to the appropriate function
 def service_cb(req, soneme):
@@ -29,8 +37,49 @@ def service_cb(req, soneme):
         return False
 
 def execute_trigger(req, soneme):
-    pass
+    mixer = Mixer(44100,0.5)
+    tracks = dict()
 
+    for sn in soneme.snodes:
+        d = sn.duration
+        if len(sn.tones)> 0:
+            for t in sn.tones:
+                track_id = t.track_id
+
+                # Only create the track if it hasn't been created before.
+                if track_id not in tracks.keys():
+                    idx = len(tracks.keys())
+                    tracks[track_id] = idx
+
+                    tdef = siren_config.synth_tracks[track_id]
+
+                    if tdef.wave_type == "sine":
+                        wave_type = SINE_WAVE
+                    elif tdef.wave_type == "saw":
+                        wave_type = SAWTOOTH_WAVE
+                    elif tdef.wave_type == "square":
+                        wave_type = SQUARE_WAVE
+                    elif tdef.wave_type == "triangle":
+                        wave_type = TRIANGLE_WAVE
+
+                    mixer.create_track(idx,wave_type, vibrato_frequency=tdef.vibrato, vibrato_variance=tdef.vibrato_variance, attack=tdef.attack, decay=tdef.decay)
+
+                mixer.add_note(tracks[track_id], note=t.note, octave=t.octave, endnote=t.end_note, duration=d.seconds)
+        else:
+            mixer.add_silence(0, duration=d.seconds)
+
+    # We need an audio segment, so load in the duck, then replace the data with our mixer's data.
+    dir = siren_config.clip_location
+    duck_fn = dir + '/duck_test.ogg'
+
+    a = AudioSegment.from_ogg(duck_fn)
+    a._data = mixer.sample_data()
+
+    play(a)
+
+    return True
+            
+    
 def execute_directional(req, soneme):
     pass
 
@@ -61,7 +110,7 @@ if __name__ == '__main__':
 
      # Find soneme language definition file
     rospy.loginfo("Loading vector information...")
-    siren_info = rospy.get_param('vectors/out/ClipSIREN')
+    siren_info = rospy.get_param('vectors/out/TonalSiren')
     siren_def_file = siren_info['definition_file']
 
     # Find symbol definitions
@@ -89,14 +138,13 @@ if __name__ == '__main__':
 
     # Check for symbol matchup.
     for sym in symbols:
-        for key in sonemes:
-            s = sonemes[key]
-            if sym == s.id:
-                rospy.loginfo("Found match beteween symbol %s and soneme %s, associating data."%(sym, s.id))
+        for key,s in sonemes.items():
+            if sym == key:
+                rospy.loginfo("Found match beteween symbol %s and soneme %s, associating data."%(sym, key))
                 rospy.logdebug("Call type: %s"%(symbols.get(sym).get('call_type')))
                 s.set_call_type(symbols.get(sym).get('call_type'))
                 break
-    
+
     # Setup service calls
     for key, soneme in sonemes.items():
         service_class = None
