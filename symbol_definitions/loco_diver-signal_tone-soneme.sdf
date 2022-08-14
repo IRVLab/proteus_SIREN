@@ -11,47 +11,127 @@
     <sonemes>
         <soneme name="Affirmative" id="affirmative">
             <snode-tone step="0" description="">
-                <tone track="nintendo" note="b2"></tone>
+                <tone track="nintendo" note="c3"></tone>
                 <duration seconds="1"></duration>
             </snode-tone>
             <snode-tone step="1" description="">
                 <duration seconds="0.25"></duration>
             </snode-tone>
             <snode-tone step="2" description="">
-                <tone track="nintendo" note="a3"></tone>
+                <tone track="nintendo" note="d3"></tone>
                 <duration seconds="1"></duration>
             </snode-tone>
         </soneme>
         <soneme name="Negative" id="negative">
             <snode-tone step="0" description="">
+                <tone track="nintendo" note="c3"></tone>
+                <duration seconds="1"></duration>
+            </snode-tone>
+            <snode-tone step="1" description="">
+                <duration seconds="0.25"></duration>
+            </snode-tone>
+            <snode-tone step="2" description="">
+                <tone track="nintendo" note="a2"></tone>
+                <duration seconds="1"></duration>
             </snode-tone>
         </soneme>
         <soneme name="Attention" id="attention">
             <snode-tone step="0" description="">
+                <tone track="nintendo" note="b3"></tone>
+                <duration seconds="0.25"></duration>
+            </snode-tone>
+            <snode-tone step="1" description="">
+                <duration seconds="0.25"></duration>
+            </snode-tone>
+            <snode-tone step="2" description="">
+                <tone track="nintendo" note="b3"></tone>
+                <duration seconds="0.25"></duration>
+            </snode-tone>
+            <snode-tone step="3" description="">
+                <duration seconds="0.25"></duration>
+            </snode-tone>
+            <snode-tone step="4" description="">
+                <tone track="nintendo" note="b3"></tone>
+                <duration seconds="0.25"></duration>
+            </snode-tone>
+            <snode-tone step="5" description="">
+                <duration seconds="0.25"></duration>
+            </snode-tone>
+            <snode-tone step="6" description="">
+                <tone track="nintendo" note="f4"></tone>
+                <duration seconds="2"></duration>
             </snode-tone>
         </soneme>        
-        <soneme name="Wait For Command" id="wait_for_command">
-            <snode-tone step="0" description="">
-            </snode-tone>
-        </soneme>
         <soneme name="Follow Me" id="follow_me">
             <snode-tone step="0" description="">
+                <tone track="nintendo" note="e3"></tone>
+                <duration seconds="0.25"></duration>
+            </snode-tone>
+            <snode-tone step="1" description="">
+                <duration seconds="0.25"></duration>
+            </snode-tone>
+            <snode-tone step="2" description="">
+                <tone track="nintendo" note="c3"></tone>
+                <duration seconds="0.25"></duration>
+            </snode-tone>
+            <snode-tone step="3" description="">
+                <duration seconds="0.25"></duration>
+            </snode-tone>
+            <snode-tone step="4" description="">
+                <tone track="nintendo" note="b3"></tone>
+                <duration seconds="1.5"></duration>
             </snode-tone>
         </soneme>
         <soneme name="Follow You" id="follow_you">
             <snode-tone step="0" description="">
+                <tone track="nintendo" note="e3"></tone>
+                <duration seconds="0.25"></duration>
+            </snode-tone>
+            <snode-tone step="1" description="">
+                <duration seconds="0.25"></duration>
+            </snode-tone>
+            <snode-tone step="2" description="">
+                <tone track="nintendo" note="c3"></tone>
+                <duration seconds="0.25"></duration>
+            </snode-tone>
+            <snode-tone step="3" description="">
+                <duration seconds="0.25"></duration>
+            </snode-tone>
+            <snode-tone step="4" description="">
+                <tone track="nintendo" note="d3"></tone>
+                <duration seconds="1.5"></duration>
             </snode-tone>
         </soneme>
         <soneme name="Come To Me" id="come">
             <snode-tone step="0" description="">
+                <tone track="nintendo" note="c3"></tone>
+                <duration seconds="0.5"></duration>
+            </snode-tone>
+            <snode-tone step="1" description="">
+                <duration seconds="0.25"></duration>
+            </snode-tone>
+            <snode-tone step="2" description="">
+                <tone track="nintendo" note="e3"></tone>
+                <duration seconds="0.5"></duration>
+            </snode-tone>
+            <snode-tone step="3" description="">
+                <duration seconds="0.25"></duration>
+            </snode-tone>
+            <snode-tone step="4" description="">
+                <tone track="nintendo" note="a3"></tone>
+                <duration seconds="0.75"></duration>
             </snode-tone>
         </soneme>
         <soneme name="Danger" id="danger">
             <snode-tone step="0" description="">
+                <tone track="fear" note="a3"></tone>
+                <duration seconds="1"></duration>
             </snode-tone>
         </soneme>
         <soneme name="Malfunction" id="malfunction">
             <snode-tone step="0" description="">
+                <tone track="woozy" note="a4" end_note="c"></tone>
+                <duration seconds="5"></duration>
             </snode-tone>
         </soneme>
         <soneme name="Go To Direction" id="go_direction">
@@ -59,6 +139,10 @@
             </snode-tone>
         </soneme>
         <soneme name="Stay" id="stay">
+            <snode-tone step="0" description="">
+            </snode-tone>
+        </soneme>
+        <soneme name="Wait For Command" id="wait_for_command">
             <snode-tone step="0" description="">
             </snode-tone>
         </soneme>
