@@ -45,7 +45,7 @@
                 <audio volume="85" speed="1" filename="danger.ogg"></audio>
             </snode-clip>
         </soneme>
-        <soneme name="Malfuction" id="malfunction">
+        <soneme name="Malfunction" id="malfunction">
             <snode-clip step="0" description="">
                 <audio volume="85" speed="1" filename="malfunction.ogg"></audio>
             </snode-clip>

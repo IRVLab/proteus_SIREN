@@ -50,7 +50,7 @@
             <snode-tone step="0" description="">
             </snode-tone>
         </soneme>
-        <soneme name="Malfuction" id="malfunction">
+        <soneme name="Malfunction" id="malfunction">
             <snode-tone step="0" description="">
             </snode-tone>
         </soneme>
