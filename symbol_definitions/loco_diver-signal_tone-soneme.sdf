@@ -4,9 +4,9 @@
         <clips pkg="proteus_siren" directory="audio_files"></clips>
         <synth-track id="nintendo" wave="square" vibrato="0" variance="0" attack="0.001" decay="0.01"></synth-track>
         <synth-track id="atari" wave="triangle" vibrato="0" variance="0" attack="0.001" decay="0.01"></synth-track>
-        <synth-track id="saw" wave="square" vibrato="0" variance="0" attack="0.001" decay="0.01"></synth-track>
-        <synth-track id="fear" wave="triangle" vibrato="10" variance="10" attack="0.001" decay="0.01"></synth-track>
-        <synth-track id="woozy" wave="triangle" vibrato="2" variance="25" attack="0.001" decay="0.01"></synth-track>
+        <synth-track id="saw" wave="saw" vibrato="0" variance="0" attack="0.001" decay="0.01"></synth-track>
+        <synth-track id="fear" wave="square" vibrato="5" variance="10" attack="0.001" decay="0.01"></synth-track>
+        <synth-track id="woozy" wave="square" vibrato="2" variance="25" attack="0.001" decay="0.01"></synth-track>
     </siren-config>
     <sonemes>
         <soneme name="Affirmative" id="affirmative">
@@ -60,19 +60,23 @@
             <snode-tone step="6" description="">
                 <tone track="nintendo" note="f4"></tone>
                 <duration seconds="2"></duration>
+            </snode-tone>            <snode-tone step="0" description="">
+                <tone track="fear" note="a3"></tone>
+                <duration seconds="1"></duration>
             </snode-tone>
-        </soneme>        
-        <soneme name="Follow Me" id="follow_me">
             <snode-tone step="0" description="">
                 <tone track="nintendo" note="e3"></tone>
                 <duration seconds="0.25"></duration>
             </snode-tone>
             <snode-tone step="1" description="">
-                <duration seconds="0.25"></duration>
+                <duration seconds="0.25"></duration>            <snode-tone step="0" description="">
+                <tone track="fear" note="a3"></tone>
+                <duration seconds="1"></duration>
             </snode-tone>
-            <snode-tone step="2" description="">
-                <tone track="nintendo" note="c3"></tone>
-                <duration seconds="0.25"></duration>
+                <duration seconds="0.25"></duration>            <snode-tone step="0" description="">
+                <tone track="fear" note="a3"></tone>
+                <duration seconds="1"></duration>
+            </snode-tone>
             </snode-tone>
             <snode-tone step="3" description="">
                 <duration seconds="0.25"></duration>
@@ -124,14 +128,35 @@
         </soneme>
         <soneme name="Danger" id="danger">
             <snode-tone step="0" description="">
+                <tone track="fear" note="b3"></tone>
+                <duration seconds="0.75"></duration>
+            </snode-tone>
+            <snode-tone step="1" description="">
+                <duration seconds="0.25"></duration>
+            </snode-tone>
+            <snode-tone step="2" description="">
+                <tone track="fear" note="bb3"></tone>
+                <duration seconds="0.75"></duration>
+            </snode-tone>
+            <snode-tone step="3" description="">
+                <duration seconds="0.25"></duration>
+            </snode-tone>
+            <snode-tone step="4" description="">
                 <tone track="fear" note="a3"></tone>
-                <duration seconds="1"></duration>
+                <duration seconds="0.75"></duration>
+            </snode-tone>
+            <snode-tone step="5" description="">
+                <duration seconds="0.25"></duration>
+            </snode-tone>
+            <snode-tone step="6" description="">
+                <tone track="fear" note="ab3"></tone>
+                <duration seconds="1.5"></duration>
             </snode-tone>
         </soneme>
         <soneme name="Malfunction" id="malfunction">
             <snode-tone step="0" description="">
-                <tone track="woozy" note="a4" end_note="c"></tone>
-                <duration seconds="5"></duration>
+                <tone track="woozy" note="a3" end_note="c"></tone>
+                <duration seconds="6"></duration>
             </snode-tone>
         </soneme>
         <soneme name="Go To Direction" id="go_direction">
@@ -140,14 +165,69 @@
         </soneme>
         <soneme name="Stay" id="stay">
             <snode-tone step="0" description="">
+                <tone track="nintendo" note="f3"></tone>
+                <duration seconds="0.75"></duration>
+            </snode-tone>
+            <snode-tone step="1" description="">
+                <duration seconds="0.5"></duration>
+            </snode-tone>
+            <snode-tone step="2" description="">
+                <tone track="nintendo" note="c3"></tone>
+                <duration seconds="0.75"></duration>
+            </snode-tone>
+            <snode-tone step="3" description="">
+                <duration seconds="0.5"></duration>
+            </snode-tone>
+            <snode-tone step="4" description="">
+                <tone track="nintendo" note="f3"></tone>
+                <duration seconds="1"></duration>
             </snode-tone>
         </soneme>
         <soneme name="Wait For Command" id="wait_for_command">
             <snode-tone step="0" description="">
+                <tone track="nintendo" note="c3"></tone>
+                <duration seconds="0.5"></duration>
+            </snode-tone>
+            <snode-tone step="1" description="">
+                <duration seconds="0.25"></duration>
+            </snode-tone>
+            <snode-tone step="2" description="">
+                <tone track="nintendo" note="e3"></tone>
+                <duration seconds="0.5"></duration>
+            </snode-tone>
+            <snode-tone step="3" description="">
+                <duration seconds="0.25"></duration>
+            </snode-tone>
+            <snode-tone step="4" description="">
+                <tone track="nintendo" note="g3"></tone>
+                <duration seconds="1.5"></duration>
             </snode-tone>
         </soneme>
         <soneme name="Which Way" id="which_way">
             <snode-tone step="0" description="">
+                <tone track="nintendo" note="c3"></tone>
+                <duration seconds="0.3"></duration>
+            </snode-tone>
+            <snode-tone step="1" description="">
+                <duration seconds="0.2"></duration>
+            </snode-tone>
+            <snode-tone step="2" description="">
+                <tone track="nintendo" note="f3"></tone>
+                <duration seconds="0.75"></duration>
+            </snode-tone>
+            <snode-tone step="3" description="">
+                <duration seconds="0.25"></duration>
+            </snode-tone>
+            <snode-tone step="4" description="">
+                <tone track="nintendo" note="g3"></tone>
+                <duration seconds="0.75"></duration>
+            </snode-tone>
+            <snode-tone step="5" description="">
+                <duration seconds="0.25"></duration>
+            </snode-tone>
+            <snode-tone step="6" description="">
+                <tone track="nintendo" note="a3"></tone>
+                <duration seconds="1.5"></duration>
             </snode-tone>
         </soneme>
         <soneme name="Remaining Battery" id="battery_remaining">
