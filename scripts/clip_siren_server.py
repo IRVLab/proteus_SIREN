@@ -70,7 +70,7 @@ def execute_trigger(req, soneme):
     dir = siren_config.clip_location
     for s in soneme.snodes:
         for audio in s.audios:
-            clip = AudioSegment.from_ogg(dir + '/' + audio.filename)
+            clip = AudioSegment.from_wav(dir + '/' + audio.filename)
             clip = change_speed(clip, audio.speed)
             clip = change_volume(clip, audio.volume)
             pydub_play(clip)
@@ -83,7 +83,7 @@ def execute_directional(req, soneme):
 
     for s in soneme.snodes:
         for audio in s.audios:
-            clip = AudioSegment.from_ogg(dir + '/' + audio.get_dyn_fname(cardinal_str))
+            clip = AudioSegment.from_wav(dir + '/' + audio.get_dyn_fname(cardinal_str))
             clip = change_speed(clip, audio.speed)
             clip = change_volume(clip, audio.volume)
             pydub_play(clip)
@@ -98,7 +98,7 @@ def execute_quantity(req, soneme):
     for s in soneme.snodes:
         for audio in s.audios:
             val = bin_quant(req.quantity * 100, audio.options) #Fit battery value to closest available value.
-            clip = AudioSegment.from_ogg(dir + '/' + audio.get_dyn_fname(val))
+            clip = AudioSegment.from_wav(dir + '/' + audio.get_dyn_fname(val))
             clip = change_speed(clip, audio.speed)
             clip = change_volume(clip, audio.volume)
             pydub_play(clip)
