@@ -60,23 +60,19 @@
             <snode-tone step="6" description="">
                 <tone track="nintendo" note="f4"></tone>
                 <duration seconds="2"></duration>
-            </snode-tone>            <snode-tone step="0" description="">
-                <tone track="fear" note="a3"></tone>
-                <duration seconds="1"></duration>
-            </snode-tone>
+            </snode-tone>            
+        </soneme>
+        <soneme name="Follow Me" id="follow_me">
             <snode-tone step="0" description="">
                 <tone track="nintendo" note="e3"></tone>
                 <duration seconds="0.25"></duration>
             </snode-tone>
             <snode-tone step="1" description="">
-                <duration seconds="0.25"></duration>            <snode-tone step="0" description="">
-                <tone track="fear" note="a3"></tone>
-                <duration seconds="1"></duration>
+                <duration seconds="0.25"></duration>
             </snode-tone>
-                <duration seconds="0.25"></duration>            <snode-tone step="0" description="">
-                <tone track="fear" note="a3"></tone>
-                <duration seconds="1"></duration>
-            </snode-tone>
+            <snode-tone step="2" description="">
+                <tone track="nintendo" note="c3"></tone>
+                <duration seconds="0.25"></duration>
             </snode-tone>
             <snode-tone step="3" description="">
                 <duration seconds="0.25"></duration>
@@ -232,6 +228,23 @@
         </soneme>
         <soneme name="Remaining Battery" id="battery_remaining">
             <snode-tone step="0" description="">
+                <tone track="nintendo" note="c3"/>
+                <duration seconds="0.75"/>
+            </snode-tone>
+            <snode-tone step="1" description="">
+                <duration seconds="0.25"/>
+            </snode-tone>
+            <snode-tone step="2" description="">
+                <tone track="nintendo" note="c4"/>
+                <duration seconds="0.75"/>
+            </snode-tone>
+            <snode-tone step="3" description="">
+                <duration seconds="1"/>
+            </snode-tone>
+            <snode-tone step="4" description="">
+                <run-tone track="nintendo" start_note="c3" stop_note="c4" glissando="True"/>
+                <quantity min="0.0" max="1.0" display_on="run-tone"/>
+                <duration seconds="2"/>
             </snode-tone>
         </soneme>
     </sonemes>

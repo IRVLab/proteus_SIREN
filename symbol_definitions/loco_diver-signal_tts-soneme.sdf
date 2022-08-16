@@ -6,67 +6,67 @@
     <sonemes>
         <soneme name="Affirmative" id="affirmative">
             <snode-speech step="0" description="">
-                <speech volume="75" speed="1" text="Yes"></speech>
+                <speech volume="100" speed="1" text="Yes"></speech>
             </snode-speech>
         </soneme>
         <soneme name="Negative" id="negative">
             <snode-speech step="0" description="">
-                <speech volume="75" speed="1" text="No"></speech>
+                <speech volume="100" speed="1" text="No"></speech>
             </snode-speech>
         </soneme>
         <soneme name="Attention" id="attention">
             <snode-speech step="0" description="">
-                <speech volume="85" speed="1" text="Pay attention!"></speech>
+                <speech volume="100" speed="1" text="Pay attention!"></speech>
             </snode-speech>
         </soneme>        
         <soneme name="Wait For Command" id="wait_for_command">
             <snode-speech step="0" description="">
-                <speech volume="75" speed="1" text="I'm waiting for a command"></speech>
+                <speech volume="100" speed="1" text="I'm waiting for a command"></speech>
             </snode-speech>
         </soneme>
         <soneme name="Follow Me" id="follow_me">
             <snode-speech step="0" description="">
-                <speech volume="75" speed="1" text="Follow me"></speech>
+                <speech volume="100" speed="1" text="Follow me"></speech>
             </snode-speech>
         </soneme>
         <soneme name="Follow You" id="follow_you">
             <snode-speech step="0" description="">
-                <speech volume="75" speed="1" text="I'll follow you"></speech>
+                <speech volume="100" speed="1" text="I'll follow you"></speech>
             </snode-speech>
         </soneme>
         <soneme name="Come To Me" id="come">
             <snode-speech step="0" description="">
-                <speech volume="75" speed="1" text="Come here"></speech>
+                <speech volume="100" speed="1" text="Come here"></speech>
             </snode-speech>
         </soneme>
         <soneme name="Danger" id="danger">
             <snode-speech step="0" description="">
-                <speech volume="85" speed="1" text="There is danger nearby"></speech>
+                <speech volume="100" speed="1" text="There is danger nearby"></speech>
             </snode-speech>
         </soneme>
         <soneme name="Malfunction" id="malfunction">
             <snode-speech step="0" description="">
-                <speech volume="85" speed="1" text="I'm experiencing an issue"></speech>
+                <speech volume="100" speed="1" text="I'm experiencing an issue"></speech>
             </snode-speech>
         </soneme>
         <soneme name="Go To Direction" id="go_direction">
             <snode-speech step="0" description="">
-                <variable-speech volume="75" speed="1" text="Go {}"></variable-speech>
+                <variable-speech volume="100" speed="1" text="Go {}"></variable-speech>
             </snode-speech>
         </soneme>
         <soneme name="Stay" id="stay">
             <snode-speech step="0" description="">
-                <speech volume="75" speed="1" text="Stay here"></speech>
+                <speech volume="100" speed="1" text="Stay here"></speech>
             </snode-speech>
         </soneme>
         <soneme name="Which Way" id="which_way">
             <snode-speech step="0" description="">
-                <speech volume="75" speed="1" text="Which way are we going?"></speech>
+                <speech volume="100" speed="1" text="Which way are we going?"></speech>
             </snode-speech>
         </soneme>
         <soneme name="Remaining Battery" id="battery_remaining">
             <snode-speech step="0" description="">
-                <variable-speech volume="75" speed="1" text="I have {} battery left"></variable-speech>
+                <variable-speech volume="100" speed="1" text="I have {} battery left"></variable-speech>
             </snode-speech>
         </soneme>
     </sonemes>
