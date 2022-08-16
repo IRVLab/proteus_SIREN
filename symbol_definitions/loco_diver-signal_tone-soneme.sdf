@@ -3,6 +3,7 @@
     <siren-config>
         <clips pkg="proteus_siren" directory="audio_files"></clips>
         <synth-track id="nintendo" wave="square" vibrato="0" variance="0" attack="0.001" decay="0.01"></synth-track>
+        <synth-track id="sine" wave="square" vibrato="0" variance="0" attack="0.001" decay="0.01"></synth-track>
         <synth-track id="atari" wave="triangle" vibrato="0" variance="0" attack="0.001" decay="0.01"></synth-track>
         <synth-track id="saw" wave="saw" vibrato="0" variance="0" attack="0.001" decay="0.01"></synth-track>
         <synth-track id="fear" wave="square" vibrato="5" variance="10" attack="0.001" decay="0.01"></synth-track>
@@ -157,6 +158,43 @@
         </soneme>
         <soneme name="Go To Direction" id="go_direction">
             <snode-tone step="0" description="">
+                <tone track="nintendo" note="c3"/>
+                <duration seconds="0.75"/>
+            </snode-tone>
+            <snode-tone step="1" description="">
+                <duration seconds="0.25"/>
+            </snode-tone>
+            <snode-tone step="2" description="">
+                <tone track="nintendo" note="c3"/>
+                <duration seconds="0.75"/>
+            </snode-tone>
+            <snode-tone step="3" description="">
+                <duration seconds="0.25"/>
+            </snode-tone>
+            <snode-tone step="4" description="">
+                <variable-tone track="nintendo" param='y-val' options="c2;c3;c4"/>
+                <duration seconds="1"/>
+            </snode-tone>
+             <snode-tone step="5" description="">
+                <duration seconds="2"/>
+            </snode-tone>
+            <snode-tone step="6" description="">
+                <tone track="nintendo" note="g3"/>
+                <duration seconds="0.75"/>
+            </snode-tone>
+            <snode-tone step="7" description="">
+                <duration seconds="0.25"/>
+            </snode-tone>
+            <snode-tone step="8" description="">
+                <tone track="nintendo" note="g3"/>
+                <duration seconds="0.75"/>
+            </snode-tone>
+            <snode-tone step="9" description="">
+                <duration seconds="0.25"/>
+            </snode-tone>
+            <snode-tone step="10" description="">
+                <variable-tone track="nintendo" param='z-val' options="g2;g3;g4"/>
+                <duration seconds="1"/>
             </snode-tone>
         </soneme>
         <soneme name="Stay" id="stay">
@@ -243,7 +281,7 @@
             </snode-tone>
             <snode-tone step="4" description="">
                 <run-tone track="nintendo" start_note="c3" stop_note="c4" glissando="True"/>
-                <quantity min="0.0" max="1.0" display_on="run-tone"/>
+                <quantity min="0.0" max="1.0" parameter="quantity" display_on="run-tone"/>
                 <duration seconds="2"/>
             </snode-tone>
         </soneme>
