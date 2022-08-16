@@ -1,6 +1,14 @@
 #!/bin/bash
+echo "Initializing everything first"
+rosservice call /loco/proteus/siren/clip/Affirmative 
+rosservice call /loco/proteus/siren/tts/Affirmative 
+rosservice call /loco/proteus/siren/synth/Affirmative 
+rosservice call /loco/proteus/siren/clip/Affirmative 
+rosservice call /loco/proteus/siren/tts/Affirmative 
+rosservice call /loco/proteus/siren/synth/Affirmative 
+
 echo "Starting sonemes in 30 seconds"
-# sleep 35
+sleep 30
 
 echo "Starting clip sonemes"
 rosservice call /loco/proteus/siren/clip/Affirmative 
@@ -134,6 +142,8 @@ sleep 5
 echo "Starting tts sonemes"
 rosservice call /loco/proteus/siren/tts/Affirmative 
 sleep 1
+rosservice call /loco/proteus/siren/tts/Affirmative 
+sleep 1
 rosservice call /loco/proteus/siren/tts/Attention
 sleep 1
 rosservice call /loco/proteus/siren/tts/Come_To_Me
@@ -261,6 +271,8 @@ rosservice call /loco/proteus/siren/tts/Which_Way
 
 sleep 5
 echo "Starting tonal sonemes"
+rosservice call /loco/proteus/siren/synth/Affirmative 
+sleep 1
 rosservice call /loco/proteus/siren/synth/Affirmative 
 sleep 1
 rosservice call /loco/proteus/siren/synth/Attention

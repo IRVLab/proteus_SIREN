@@ -23,9 +23,9 @@ def cardinalize(transform):
 
     # Pitch handling
     if rpy[1] > 0:
-        ret+= "up"
+        ret+= " up"
     elif rpy[1] < 0:
-        ret+= "down"
+        ret+= " down"
 
     # Add a conjunction if there's pitch involved.
     if rpy[1] != 0 and rpy[2] != 0:
@@ -61,14 +61,14 @@ def service_cb(req, soneme):
 def execute_trigger(req, soneme):
     for s in soneme.snodes:
         for speech in s.speeches:
-            voice = Voice(lang=siren_config.voice_language, speed=int((siren_config.voice_wpm * speech.speed)), voice_id= siren_config.voice_id)
+            voice = Voice(lang=siren_config.voice_language, speed=int((siren_config.voice_wpm * speech.speed)), volume=2.0, voice_id= siren_config.voice_id)
             voice.say(speech.text)
     return True
 
 def execute_directional(req, soneme):
     for s in soneme.snodes:
         for speech in s.speeches:
-            voice = Voice(lang=siren_config.voice_language, speed=int((siren_config.voice_wpm * speech.speed)), voice_id= siren_config.voice_id)
+            voice = Voice(lang=siren_config.voice_language, speed=int((siren_config.voice_wpm * speech.speed)), volume=2.0, voice_id= siren_config.voice_id)
             direction = cardinalize(req.transform)
             print(direction)
             voice.say(speech.get_dyn_text(direction))
@@ -80,7 +80,7 @@ def execute_target(req, soneme):
 def execute_quantity(req, soneme):
     for s in soneme.snodes:
         for speech in s.speeches:
-            voice = Voice(lang=siren_config.voice_language, speed=int((siren_config.voice_wpm * speech.speed)), voice_id= siren_config.voice_id)
+            voice = Voice(lang=siren_config.voice_language, speed=int((siren_config.voice_wpm * speech.speed)), volume=2.0, voice_id= siren_config.voice_id)
             quantity = str(int(req.quantity * 100)) + " percent"
             voice.say(speech.get_dyn_text(quantity))
 
