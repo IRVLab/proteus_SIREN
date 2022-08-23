@@ -15,8 +15,8 @@ from proteus.siren import SirenConfig
 rospy.init_node('ogg_siren_server', argv=None, anonymous=True)
 siren_config = None
 
-def change_volume(audio_seg, volume=50):
-    return audio_seg
+def change_volume(audio_seg, volume=0.5):
+    return audio_seg + (siren_config.volume * volume)
 
 def change_speed(audio_seg, speed=1.0):
     return audio_seg._spawn(audio_seg.raw_data, overrides={"frame_rate": int(audio_seg.frame_rate * speed)})

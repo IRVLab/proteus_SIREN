@@ -1,73 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <siren-definition>
     <siren-config>
-        <clips pkg="proteus_siren" directory="audio_files"></clips>
-        <volume-range low="0" high="25"></volume-range>
+        <clips pkg="proteus_siren" directory="audio_files" volume="20"></clips>
     </siren-config>
     <sonemes>
         <soneme name="Affirmative" id="affirmative">
             <snode-clip step="0" description="">
-                <audio volume="75" speed="1" filename="affirmative.wav"></audio>
+                <audio volume="0.75" speed="1" filename="affirmative.wav"></audio>
             </snode-clip>
         </soneme>
         <soneme name="Negative" id="negative">
             <snode-clip step="0" description="">
-                <audio volume="75" speed="1" filename="negative.wav"></audio>
+                <audio volume="0.75" speed="1" filename="negative.wav"></audio>
             </snode-clip>
         </soneme>
         <soneme name="Attention" id="attention">
             <snode-clip step="0" description="">
-                <audio volume="85" speed="1" filename="attention.wav"></audio>
+                <audio volume="0.85" speed="1" filename="attention.wav"></audio>
             </snode-clip>
         </soneme>        
         <soneme name="Wait For Command" id="wait_for_command">
             <snode-clip step="0" description="">
-                <audio volume="75" speed="1" filename="wait.wav"></audio>
+                <audio volume="0.75" speed="1" filename="wait.wav"></audio>
             </snode-clip>
         </soneme>
         <soneme name="Follow Me" id="follow_me">
             <snode-clip step="0" description="">
-                <audio volume="75" speed="1" filename="follow_me.wav"></audio>
+                <audio volume="0.75" speed="1" filename="follow_me.wav"></audio>
             </snode-clip>
         </soneme>
         <soneme name="Follow You" id="follow_you">
             <snode-clip step="0" description="">
-                <audio volume="75" speed="1" filename="follow_you.wav"></audio>
+                <audio volume="0.75" speed="1" filename="follow_you.wav"></audio>
             </snode-clip>
         </soneme>
         <soneme name="Come To Me" id="come">
             <snode-clip step="0" description="">
-                <audio volume="75" speed="1" filename="come.wav"></audio>
+                <audio volume="0.75" speed="1" filename="come.wav"></audio>
             </snode-clip>
         </soneme>
         <soneme name="Danger" id="danger">
             <snode-clip step="0" description="">
-                <audio volume="85" speed="1" filename="danger.wav"></audio>
+                <audio volume="0.85" speed="1" filename="danger.wav"></audio>
             </snode-clip>
         </soneme>
         <soneme name="Malfunction" id="malfunction">
             <snode-clip step="0" description="">
-                <audio volume="85" speed="1" filename="malfunction.wav"></audio>
+                <audio volume="0.85" speed="1" filename="malfunction.wav"></audio>
             </snode-clip>
         </soneme>
         <soneme name="Go To Direction" id="go_direction">
             <snode-clip step="0" description="">
-                <variable-audio volume="75" speed="1" filename="go_{}.wav" options="up;upright;right;downright;down;downleft;left;upleft;backwards;forwards"></variable-audio>
+                <variable-audio volume="0.75" speed="1" filename="go_{}.wav" options="up;upright;right;downright;down;downleft;left;upleft;backwards;forwards"></variable-audio>
             </snode-clip>
         </soneme>
         <soneme name="Stay" id="stay">
             <snode-clip step="0" description="">
-                <audio volume="75" speed="1" filename="stay.wav"></audio>
+                <audio volume="0.75" speed="1" filename="stay.wav"></audio>
             </snode-clip>
         </soneme>
         <soneme name="Which Way" id="which_way">
             <snode-clip step="0" description="">
-                <audio volume="75" speed="1" filename="which_way.wav"></audio>
+                <audio volume="0.75" speed="1" filename="which_way.wav"></audio>
             </snode-clip>
         </soneme>
         <soneme name="Remaining Battery" id="battery_remaining">
             <snode-clip step="0" description="">
-                <variable-audio volume="75" speed="1" filename="batt_{}.wav" options="100;90;80;75;70;60;50;40;30;25;20;10;5;0"></variable-audio>
+                <variable-audio volume="0.75" speed="1" filename="batt_{}.wav" options="100;90;80;75;70;60;50;40;30;25;20;10;5;0"></variable-audio>
             </snode-clip>
         </soneme>
     </sonemes>
