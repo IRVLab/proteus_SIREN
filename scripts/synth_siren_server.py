@@ -38,12 +38,10 @@ def service_cb(req, soneme):
     else:
         return False
 
-def execute_trigger(req, soneme):
-    mixer = Mixer(44100,0.5)
+def create_tracks(mixer, nodes):
     tracks = dict()
-
-    for sn in soneme.snodes:
-        d = sn.duration
+    # First go through and add tracks
+    for sn in nodes:
         if len(sn.tones)> 0:
             for t in sn.tones:
                 track_id = t.track_id
@@ -66,10 +64,27 @@ def execute_trigger(req, soneme):
 
                     mixer.create_track(idx,wave_type, vibrato_frequency=tdef.vibrato, vibrato_variance=tdef.vibrato_variance, attack=tdef.attack, decay=tdef.decay)
 
-                mixer.add_note(tracks[track_id], note=t.note, octave=t.octave, endnote=t.end_note, duration=d.seconds)
-        else:
-            mixer.add_silence(0, duration=d.seconds)
+    return tracks
 
+def execute_trigger(req, soneme):
+    mixer = Mixer(44100,0.5)
+    tracks = create_tracks(mixer, soneme.snodes)
+
+    for sn in soneme.snodes:
+        d = sn.duration
+        tracks_used = list()
+        if len(sn.tones) > 0 :
+            # if there are tones, add them to the appropriate tracks.
+            for t in sn.tones:
+                track_id = t.track_id
+                mixer.add_note(tracks[track_id], note=t.note, octave=t.octave, endnote=t.end_note, duration=d.seconds)
+                tracks_used.append(track_id)
+
+        # Add silence to all unused tracks.
+        for key, track in tracks.items():
+            if key not in tracks_used:
+                mixer.add_silence(tracks[key], duration=d.seconds)
+        
     # We need an audio segment, so load in the duck, then replace the data with our mixer's data.
     dir = siren_config.clip_location
     duck_fn = dir + '/duck_test.ogg'
@@ -83,31 +98,15 @@ def execute_trigger(req, soneme):
     
 def execute_directional(req, soneme):
     mixer = Mixer(44100,0.5)
-    tracks = dict()
+    tracks = create_tracks(mixer, soneme.snodes)
 
     for sn in soneme.snodes:
         d = sn.duration
-        if len(sn.tones)> 0:
+        tracks_used = list()
+        if len(sn.tones) > 0 :
+            # if there are tones, add them to the appropriate tracks.
             for t in sn.tones:
                 track_id = t.track_id
-
-                # Only create the track if it hasn't been created before.
-                if track_id not in tracks.keys():
-                    idx = len(tracks.keys())
-                    tracks[track_id] = idx
-
-                    tdef = siren_config.synth_tracks[track_id]
-
-                    if tdef.wave_type == "sine":
-                        wave_type = SINE_WAVE
-                    elif tdef.wave_type == "saw":
-                        wave_type = SAWTOOTH_WAVE
-                    elif tdef.wave_type == "square":
-                        wave_type = SQUARE_WAVE
-                    elif tdef.wave_type == "triangle":
-                        wave_type = TRIANGLE_WAVE
-
-                    mixer.create_track(idx,wave_type, vibrato_frequency=tdef.vibrato, vibrato_variance=tdef.vibrato_variance, attack=tdef.attack, decay=tdef.decay)
 
                 if type(t) == Tone:
                     mixer.add_note(tracks[track_id], note=t.note, octave=t.octave, endnote=t.end_note, duration=d.seconds)
@@ -125,9 +124,16 @@ def execute_directional(req, soneme):
                         mixer.add_note(tracks[track_id], note=t.options[2][0], octave=t.options[2][1], duration=d.seconds)
                     elif value < 0:
                         mixer.add_note(tracks[track_id], note=t.options[0][0], octave=t.options[0][1], duration=d.seconds)
-                    
-        else:
-            mixer.add_silence(0, duration=d.seconds)
+
+            #Regardless of how it's handled, note that the track used has been used.
+            tracks_used.append(track_id)
+
+        # Add silence to all unused tracks.
+        for key, track in tracks.items():
+            if key not in tracks_used:
+                print("Track {} unused, adding {} silence".format(key, d.seconds))
+                mixer.add_silence(tracks[key], duration=d.seconds)
+
 
     # We need an audio segment, so load in the duck, then replace the data with our mixer's data.
     dir = siren_config.clip_location
@@ -144,32 +150,15 @@ def execute_target(req, soneme):
 
 def execute_quantity(req, soneme):
     mixer = Mixer(44100,0.5)
-    tracks = dict()
+    tracks = create_tracks(mixer, soneme.snodes)
 
     for sn in soneme.snodes:
         d = sn.duration
-        if len(sn.tones)> 0:
+        tracks_used = list()
+        if len(sn.tones) > 0 :
+            # if there are tones, add them to the appropriate tracks.
             for t in sn.tones:
                 track_id = t.track_id
-
-                # Only create the track if it hasn't been created before.
-                if track_id not in tracks.keys():
-                    idx = len(tracks.keys())
-                    tracks[track_id] = idx
-
-                    tdef = siren_config.synth_tracks[track_id]
-
-                    if tdef.wave_type == "sine":
-                        wave_type = SINE_WAVE
-                    elif tdef.wave_type == "saw":
-                        wave_type = SAWTOOTH_WAVE
-                    elif tdef.wave_type == "square":
-                        wave_type = SQUARE_WAVE
-                    elif tdef.wave_type == "triangle":
-                        wave_type = TRIANGLE_WAVE
-
-                    mixer.create_track(idx,wave_type, vibrato_frequency=tdef.vibrato, vibrato_variance=tdef.vibrato_variance, attack=tdef.attack, decay=tdef.decay)
-
                 if type(t) == Tone:
                     mixer.add_note(tracks[track_id], note=t.note, octave=t.octave, endnote=t.end_note, duration=d.seconds)
                 elif type(t) == RunTone:
@@ -181,8 +170,13 @@ def execute_quantity(req, soneme):
                         else:
                             mixer.add_silence(tracks[track_id], duration=d)
 
-        else:
-            mixer.add_silence(0, duration=d.seconds)
+            #Regardless of how it's handled, note that the track used has been used.
+            tracks_used.append(track_id)
+
+        # Add silence to all unused tracks.
+        for key, track in tracks.items():
+            if key not in tracks_used:
+                mixer.add_silence(tracks[key], duration=d.seconds)
 
     # We need an audio segment, so load in the duck, then replace the data with our mixer's data.
     dir = siren_config.clip_location
