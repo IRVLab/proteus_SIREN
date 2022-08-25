@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <siren-definition>
     <siren-config>
-        <clips pkg="proteus_siren" directory="audio_files" volume="20"></clips>
+        <clips pkg="proteus_siren" directory="audio_files/clips" volume="20"></clips>
     </siren-config>
     <sonemes>
         <soneme name="Affirmative" id="affirmative">
