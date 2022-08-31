@@ -26,6 +26,10 @@ siren_config = None
 
 # Farms out the execution of the soneme to the appropriate function
 def service_cb(req, soneme):
+    # # HACK prime the audio system with some silence.
+    silence = AudioSegment.silent(duration=500)
+    play(silence)
+
     rospy.logdebug('Service callback for soneme %s'%(soneme.id))
     if soneme.call_type == 'trigger':
         return execute_trigger(req, soneme)
@@ -89,7 +93,7 @@ def execute_trigger(req, soneme):
     dir = siren_config.clip_location
     duck_fn = dir + '/duck_test.wav'
 
-    a = AudioSegment.from_ogg(duck_fn)
+    a = AudioSegment.from_wav(duck_fn)
     a._data = mixer.sample_data()
     play(a)
 
@@ -142,7 +146,7 @@ def execute_directional(req, soneme):
     dir = siren_config.clip_location
     duck_fn = dir + '/duck_test.wav'
 
-    a = AudioSegment.from_ogg(duck_fn)
+    a = AudioSegment.from_wav(duck_fn)
     a._data = mixer.sample_data()
     play(a)
 
@@ -188,7 +192,7 @@ def execute_quantity(req, soneme):
     dir = siren_config.clip_location
     duck_fn = dir + '/duck_test.wav'
 
-    a = AudioSegment.from_ogg(duck_fn)
+    a = AudioSegment.from_wav(duck_fn)
     a._data = mixer.sample_data()
     play(a)
 

@@ -1,9 +1,11 @@
 #!/usr/bin/python3
 import rospy
 from rosnode import get_node_names
-from tf.transformations import euler_from_quaternion, quaternion_from_euler
+# from tf.transformations import euler_from_quaternion, quaternion_from_euler
 
 from voxpopuli import Voice
+from pydub import AudioSegment
+from pydub.playback import play
 
 import sys
 import xml.etree.ElementTree as ET
@@ -17,7 +19,8 @@ siren_config = None
 # Fit transform into text description of cardinal direction
 def cardinalize(transform):
     q = transform.rotation
-    rpy = euler_from_quaternion([q.x, q.y, q.z, q.w]) #We only actually need pitch and yaw, roll is ignored here.
+    # rpy = euler_from_quaternion([q.x, q.y, q.z, q.w]) #We only actually need pitch and yaw, roll is ignored here.
+    rpy = [q.x, q.y, q.z] # THIS IS A DIRTY HACK
 
     ret = "" # Return string.
 
@@ -46,6 +49,11 @@ def bin_quant(quantity, bins):
 
 # Farms out the execution of the soneme to the appropriate function
 def service_cb(req, soneme):
+
+    # # HACK prime the audio system with some silence.
+    silence = AudioSegment.silent(duration=500)
+    play(silence)
+
     rospy.logdebug('Service callback for soneme %s'%(soneme.id))
     if soneme.call_type == 'trigger':
         return execute_trigger(req, soneme)
@@ -62,7 +70,16 @@ def execute_trigger(req, soneme):
     for s in soneme.snodes:
         for speech in s.speeches:
             voice = Voice(lang=siren_config.voice_language, speed=int((siren_config.voice_wpm * speech.speed)), volume=(siren_config.volume * speech.volume), voice_id= siren_config.voice_id)
-            voice.say(speech.text)
+            # voice.say(speech.text)
+
+            #HACK 
+            fname = siren_config.clip_location + '/tts/' + soneme.name + '.wav'
+            with open(fname, 'wb') as fstream:
+                    fstream.write(voice.to_audio(speech.text))
+
+            a = AudioSegment.from_wav(fname)
+            play(a)
+
 
             if siren_config.save_wavs:
                 with open(siren_config.clip_location + '/tts/' + soneme.name + '.wav', 'wb') as fstream:
@@ -75,7 +92,15 @@ def execute_directional(req, soneme):
         for speech in s.speeches:
             voice = Voice(lang=siren_config.voice_language, speed=int((siren_config.voice_wpm * speech.speed)), volume=(siren_config.volume * speech.volume), voice_id= siren_config.voice_id)
             direction = cardinalize(req.transform)
-            voice.say(speech.get_dyn_text(direction))
+            # voice.say(speech.get_dyn_text(direction))
+
+            #HACK 
+            fname = siren_config.clip_location + '/tts/' + soneme.name + '.wav'
+            with open(fname, 'wb') as fstream:
+                    fstream.write(voice.to_audio(speech.get_dyn_text(direction)))
+
+            a = AudioSegment.from_wav(fname)
+            play(a)
 
             if siren_config.save_wavs:
                 with open(siren_config.clip_location + '/tts/' + soneme.name + '_' + direction + '.wav', 'wb') as fstream:
@@ -91,7 +116,15 @@ def execute_quantity(req, soneme):
         for speech in s.speeches:
             voice = Voice(lang=siren_config.voice_language, speed=int((siren_config.voice_wpm * speech.speed)), volume=(siren_config.volume * speech.volume), voice_id= siren_config.voice_id)
             quantity = str(int(req.quantity * 100)) + " percent"
-            voice.say(speech.get_dyn_text(quantity))
+            # voice.say(speech.get_dyn_text(quantity))
+
+            #HACK 
+            fname = siren_config.clip_location + '/tts/' + soneme.name + '.wav'
+            with open(fname, 'wb') as fstream:
+                    fstream.write(voice.to_audio(speech.get_dyn_text(quantity)))
+
+            a = AudioSegment.from_wav(fname)
+            play(a)
 
             if siren_config.save_wavs:
                 with open(siren_config.clip_location + '/tts/' + soneme.name + '_' + quantity + '.wav', 'wb') as fstream:
