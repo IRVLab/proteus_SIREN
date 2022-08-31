@@ -1,142 +1,142 @@
 #!/bin/bash
-echo "Initializing everything first"
-rosservice call /loco/proteus/siren/clip/Affirmative 
-rosservice call /loco/proteus/siren/tts/Affirmative 
-rosservice call /loco/proteus/siren/synth/Affirmative 
-rosservice call /loco/proteus/siren/clip/Affirmative 
-rosservice call /loco/proteus/siren/tts/Affirmative 
-rosservice call /loco/proteus/siren/synth/Affirmative 
+# echo "Initializing everything first"
+# rosservice call /loco/proteus/siren/clip/Affirmative 
+# rosservice call /loco/proteus/siren/tts/Affirmative 
+# rosservice call /loco/proteus/siren/synth/Affirmative 
+# rosservice call /loco/proteus/siren/clip/Affirmative 
+# rosservice call /loco/proteus/siren/tts/Affirmative 
+# rosservice call /loco/proteus/siren/synth/Affirmative 
 
-echo "Starting sonemes in 30 seconds"
-sleep 30
+# echo "Starting sonemes in 30 seconds"
+# sleep 30
 
-echo "Starting clip sonemes"
-rosservice call /loco/proteus/siren/clip/Affirmative 
-sleep 1
-rosservice call /loco/proteus/siren/clip/Attention
-sleep 1
-rosservice call /loco/proteus/siren/clip/Come_To_Me
-sleep 1
-rosservice call /loco/proteus/siren/clip/Danger
-sleep 1
-rosservice call /loco/proteus/siren/clip/Follow_Me
-sleep 1
-rosservice call /loco/proteus/siren/clip/Follow_You
-sleep 1
-rosservice call /loco/proteus/siren/clip/Go_To_Direction "transform:
-  translation:
-    x: 0.0
-    y: 0.0
-    z: 0.0
-  rotation:
-    x: 0.0
-    y: 1.0
-    z: 0.0
-    w: 1.0
-mode: ''" 
-sleep 1
-rosservice call /loco/proteus/siren/clip/Go_To_Direction "transform:
-  translation:
-    x: 0.0
-    y: 0.0
-    z: 0.0
-  rotation:
-    x: 0.0
-    y: -1.0
-    z: 0.0
-    w: 1.0
-mode: ''" 
-sleep 1
-rosservice call /loco/proteus/siren/clip/Go_To_Direction "transform:
-  translation:
-    x: 0.0
-    y: 0.0
-    z: 0.0
-  rotation:
-    x: 0.0
-    y: 0.0
-    z: 1.0
-    w: 1.0
-mode: ''" 
-sleep 1
-rosservice call /loco/proteus/siren/clip/Go_To_Direction "transform:
-  translation:
-    x: 0.0
-    y: 0.0
-    z: 0.0
-  rotation:
-    x: 0.0
-    y: 0.0
-    z: -1.0
-    w: 1.0
-mode: ''" 
-sleep 1
-rosservice call /loco/proteus/siren/clip/Go_To_Direction "transform:
-  translation:
-    x: 0.0
-    y: 0.0
-    z: 0.0
-  rotation:
-    x: 0.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-mode: ''" 
-sleep 1
-rosservice call /loco/proteus/siren/clip/Go_To_Direction "transform:
-  translation:
-    x: 0.0
-    y: 0.0
-    z: 0.0
-  rotation:
-    x: 0.0
-    y: 1.0
-    z: -1.0
-    w: 1.0
-mode: ''" 
-sleep 1
-rosservice call /loco/proteus/siren/clip/Go_To_Direction "transform:
-  translation:
-    x: 0.0
-    y: 0.0
-    z: 0.0
-  rotation:
-    x: 0.0
-    y: -1.0
-    z: 1.0
-    w: 1.0
-mode: ''" 
-sleep 1
-rosservice call /loco/proteus/siren/clip/Go_To_Direction "transform:
-  translation:
-    x: 0.0
-    y: 0.0
-    z: 0.0
-  rotation:
-    x: 0.0
-    y: -1.0
-    z: -1.0
-    w: 1.0
-mode: ''" 
-rosservice call /loco/proteus/siren/clip/Malfunction
-sleep 1
-rosservice call /loco/proteus/siren/clip/Stay
-sleep 1
-rosservice call /loco/proteus/siren/clip/Negative
-sleep 1
-rosservice call /loco/proteus/siren/clip/Remaining_Battery " quantity: 1.0"
-sleep 1
-rosservice call /loco/proteus/siren/clip/Remaining_Battery " quantity: 0.75"
-sleep 1
-rosservice call /loco/proteus/siren/clip/Remaining_Battery " quantity: 0.5"
-sleep 1
-rosservice call /loco/proteus/siren/clip/Remaining_Battery " quantity: 0.25"
-sleep 1
-rosservice call /loco/proteus/siren/clip/Remaining_Battery " quantity: 0.01"
-sleep 1
-rosservice call /loco/proteus/siren/clip/Wait_For_Command 
-sleep 1
-rosservice call /loco/proteus/siren/clip/Which_Way
+# echo "Starting clip sonemes"
+# rosservice call /loco/proteus/siren/clip/Affirmative 
+# sleep 1
+# rosservice call /loco/proteus/siren/clip/Attention
+# sleep 1
+# rosservice call /loco/proteus/siren/clip/Come_To_Me
+# sleep 1
+# rosservice call /loco/proteus/siren/clip/Danger
+# sleep 1
+# rosservice call /loco/proteus/siren/clip/Follow_Me
+# sleep 1
+# rosservice call /loco/proteus/siren/clip/Follow_You
+# sleep 1
+# rosservice call /loco/proteus/siren/clip/Go_To_Direction "transform:
+#   translation:
+#     x: 0.0
+#     y: 0.0
+#     z: 0.0
+#   rotation:
+#     x: 0.0
+#     y: 1.0
+#     z: 0.0
+#     w: 1.0
+# mode: ''" 
+# sleep 1
+# rosservice call /loco/proteus/siren/clip/Go_To_Direction "transform:
+#   translation:
+#     x: 0.0
+#     y: 0.0
+#     z: 0.0
+#   rotation:
+#     x: 0.0
+#     y: -1.0
+#     z: 0.0
+#     w: 1.0
+# mode: ''" 
+# sleep 1
+# rosservice call /loco/proteus/siren/clip/Go_To_Direction "transform:
+#   translation:
+#     x: 0.0
+#     y: 0.0
+#     z: 0.0
+#   rotation:
+#     x: 0.0
+#     y: 0.0
+#     z: 1.0
+#     w: 1.0
+# mode: ''" 
+# sleep 1
+# rosservice call /loco/proteus/siren/clip/Go_To_Direction "transform:
+#   translation:
+#     x: 0.0
+#     y: 0.0
+#     z: 0.0
+#   rotation:
+#     x: 0.0
+#     y: 0.0
+#     z: -1.0
+#     w: 1.0
+# mode: ''" 
+# sleep 1
+# rosservice call /loco/proteus/siren/clip/Go_To_Direction "transform:
+#   translation:
+#     x: 0.0
+#     y: 0.0
+#     z: 0.0
+#   rotation:
+#     x: 0.0
+#     y: 1.0
+#     z: 1.0
+#     w: 1.0
+# mode: ''" 
+# sleep 1
+# rosservice call /loco/proteus/siren/clip/Go_To_Direction "transform:
+#   translation:
+#     x: 0.0
+#     y: 0.0
+#     z: 0.0
+#   rotation:
+#     x: 0.0
+#     y: 1.0
+#     z: -1.0
+#     w: 1.0
+# mode: ''" 
+# sleep 1
+# rosservice call /loco/proteus/siren/clip/Go_To_Direction "transform:
+#   translation:
+#     x: 0.0
+#     y: 0.0
+#     z: 0.0
+#   rotation:
+#     x: 0.0
+#     y: -1.0
+#     z: 1.0
+#     w: 1.0
+# mode: ''" 
+# sleep 1
+# rosservice call /loco/proteus/siren/clip/Go_To_Direction "transform:
+#   translation:
+#     x: 0.0
+#     y: 0.0
+#     z: 0.0
+#   rotation:
+#     x: 0.0
+#     y: -1.0
+#     z: -1.0
+#     w: 1.0
+# mode: ''" 
+# rosservice call /loco/proteus/siren/clip/Malfunction
+# sleep 1
+# rosservice call /loco/proteus/siren/clip/Stay
+# sleep 1
+# rosservice call /loco/proteus/siren/clip/Negative
+# sleep 1
+# rosservice call /loco/proteus/siren/clip/Remaining_Battery " quantity: 1.0"
+# sleep 1
+# rosservice call /loco/proteus/siren/clip/Remaining_Battery " quantity: 0.75"
+# sleep 1
+# rosservice call /loco/proteus/siren/clip/Remaining_Battery " quantity: 0.5"
+# sleep 1
+# rosservice call /loco/proteus/siren/clip/Remaining_Battery " quantity: 0.25"
+# sleep 1
+# rosservice call /loco/proteus/siren/clip/Remaining_Battery " quantity: 0.01"
+# sleep 1
+# rosservice call /loco/proteus/siren/clip/Wait_For_Command 
+# sleep 1
+# rosservice call /loco/proteus/siren/clip/Which_Way
 
 sleep 5
 echo "Starting tts sonemes"

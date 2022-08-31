@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <siren-definition>
     <siren-config>
-        <voice lang="us" id="2" wpm="140" volume="7.5"></voice>
+        <clips pkg="proteus_siren" directory="audio_files" volume="1.0"></clips>
+        <voice lang="us" id="2" wpm="150" volume="7.5"></voice>
     </siren-config>
     <sonemes>
         <soneme name="Affirmative" id="affirmative">
@@ -26,17 +27,17 @@
         </soneme>
         <soneme name="Follow Me" id="follow_me">
             <snode-speech step="0" description="">
-                <speech volume="1.0" speed="1" text="Follow me"></speech>
+                <speech volume="1.0" speed="1" text="Please follow me"></speech>
             </snode-speech>
         </soneme>
         <soneme name="Follow You" id="follow_you">
             <snode-speech step="0" description="">
-                <speech volume="1.0" speed="1" text="I'll follow you"></speech>
+                <speech volume="1.0" speed="1" text="I'm going to follow you"></speech>
             </snode-speech>
         </soneme>
         <soneme name="Come To Me" id="come">
             <snode-speech step="0" description="">
-                <speech volume="1.0" speed="1" text="Come here"></speech>
+                <speech volume="1.0" speed="1" text="Come to my location"></speech>
             </snode-speech>
         </soneme>
         <soneme name="Danger" id="danger">
@@ -51,12 +52,12 @@
         </soneme>
         <soneme name="Go To Direction" id="go_direction">
             <snode-speech step="0" description="">
-                <variable-speech volume="1.0" speed="1" text="Go {}"></variable-speech>
+                <variable-speech volume="1.0" speed="1" text="Please swim {}"></variable-speech>
             </snode-speech>
         </soneme>
         <soneme name="Stay" id="stay">
             <snode-speech step="0" description="">
-                <speech volume="1.0" speed="1" text="Stay here"></speech>
+                <speech volume="1.0" speed="1" text="Stay in this location"></speech>
             </snode-speech>
         </soneme>
         <soneme name="Which Way" id="which_way">

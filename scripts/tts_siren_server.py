@@ -63,6 +63,11 @@ def execute_trigger(req, soneme):
         for speech in s.speeches:
             voice = Voice(lang=siren_config.voice_language, speed=int((siren_config.voice_wpm * speech.speed)), volume=(siren_config.volume * speech.volume), voice_id= siren_config.voice_id)
             voice.say(speech.text)
+
+            if siren_config.save_wavs:
+                with open(siren_config.clip_location + '/tts/' + soneme.name + '.wav', 'wb') as fstream:
+                    fstream.write(voice.to_audio(speech.text))
+
     return True
 
 def execute_directional(req, soneme):
@@ -70,8 +75,12 @@ def execute_directional(req, soneme):
         for speech in s.speeches:
             voice = Voice(lang=siren_config.voice_language, speed=int((siren_config.voice_wpm * speech.speed)), volume=(siren_config.volume * speech.volume), voice_id= siren_config.voice_id)
             direction = cardinalize(req.transform)
-            print(direction)
             voice.say(speech.get_dyn_text(direction))
+
+            if siren_config.save_wavs:
+                with open(siren_config.clip_location + '/tts/' + soneme.name + '_' + direction + '.wav', 'wb') as fstream:
+                    fstream.write(voice.to_audio(speech.get_dyn_text(direction)))
+
     return True
 
 def execute_target(req, soneme):
@@ -83,6 +92,10 @@ def execute_quantity(req, soneme):
             voice = Voice(lang=siren_config.voice_language, speed=int((siren_config.voice_wpm * speech.speed)), volume=(siren_config.volume * speech.volume), voice_id= siren_config.voice_id)
             quantity = str(int(req.quantity * 100)) + " percent"
             voice.say(speech.get_dyn_text(quantity))
+
+            if siren_config.save_wavs:
+                with open(siren_config.clip_location + '/tts/' + soneme.name + '_' + quantity + '.wav', 'wb') as fstream:
+                    fstream.write(voice.to_audio(speech.get_dyn_text(quantity)))
 
     return True
 

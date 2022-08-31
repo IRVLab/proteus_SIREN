@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<siren-definition>
+    <siren-config>
+        <clips pkg="proteus_siren" directory="audio_files" volume="1.0"></clips>
+        <voice lang="us" id="2" wpm="150" volume="1"></voice>
+    </siren-config>
+    <sonemes>
+        <soneme name="Affirmative" id="affirmative">
+            <snode-speech step="0" description="">
+                <speech volume="1.0" speed="1" text="Affirmative"></speech>
+            </snode-speech>
+        </soneme>
+        <soneme name="Negative" id="negative">
+            <snode-speech step="0" description="">
+                <speech volume="1.0" speed="1" text="Negative"></speech>
+            </snode-speech>
+        </soneme>
+        <soneme name="Attention" id="attention">
+            <snode-speech step="0" description="">
+                <speech volume="1.0" speed="1" text="Attention!"></speech>
+            </snode-speech>
+        </soneme>        
+        <soneme name="Wait For Command" id="wait_for_command">
+            <snode-speech step="0" description="">
+                <speech volume="1.0" speed="1" text="Waiting for command"></speech>
+            </snode-speech>
+        </soneme>
+        <soneme name="Follow Me" id="follow_me">
+            <snode-speech step="0" description="">
+                <speech volume="1.0" speed="1" text="Follow me"></speech>
+            </snode-speech>
+        </soneme>
+        <soneme name="Follow You" id="follow_you">
+            <snode-speech step="0" description="">
+                <speech volume="1.0" speed="1" text="I'll follow you"></speech>
+            </snode-speech>
+        </soneme>
+        <soneme name="Come To Me" id="come">
+            <snode-speech step="0" description="">
+                <speech volume="1.0" speed="1" text="Come to me"></speech>
+            </snode-speech>
+        </soneme>
+        <soneme name="Danger" id="danger">
+            <snode-speech step="0" description="">
+                <speech volume="1.0" speed="1" text="Danger nearby"></speech>
+            </snode-speech>
+        </soneme>
+        <soneme name="Malfunction" id="malfunction">
+            <snode-speech step="0" description="">
+                <speech volume="1.0" speed="1" text="Malfunction"></speech>
+            </snode-speech>
+        </soneme>
+        <soneme name="Go To Direction" id="go_direction">
+            <snode-speech step="0" description="">
+                <variable-speech volume="1.0" speed="1" text="Go {}"></variable-speech>
+            </snode-speech>
+        </soneme>
+        <soneme name="Stay" id="stay">
+            <snode-speech step="0" description="">
+                <speech volume="1.0" speed="1" text="Stay here"></speech>
+            </snode-speech>
+        </soneme>
+        <soneme name="Which Way" id="which_way">
+            <snode-speech step="0" description="">
+                <speech volume="1.0" speed="1" text="Which way?"></speech>
+            </snode-speech>
+        </soneme>
+        <soneme name="Remaining Battery" id="battery_remaining">
+            <snode-speech step="0" description="">
+                <variable-speech volume="1.0" speed="1" text="{} battery remaining"></variable-speech>
+            </snode-speech>
+        </soneme>
+    </sonemes>
+</siren-definition>

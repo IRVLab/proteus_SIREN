@@ -158,42 +158,42 @@
         </soneme>
         <soneme name="Go To Direction" id="go_direction">
             <snode-tone step="0" description="">
-                <tone track="sine" note="c3"/>
+                <tone track="nintendo" note="c3"/>
                 <duration seconds="0.75"/>
             </snode-tone>
             <snode-tone step="1" description="">
                 <duration seconds="0.25"/>
             </snode-tone>
             <snode-tone step="2" description="">
-                <tone track="sine" note="c3"/>
+                <tone track="nintendo" note="c3"/>
                 <duration seconds="0.75"/>
             </snode-tone>
             <snode-tone step="3" description="">
                 <duration seconds="0.25"/>
             </snode-tone>
             <snode-tone step="4" description="">
-                <variable-tone track="sine" param='y-val' options="c2;c3;c4"/>
+                <variable-tone track="nintendo" param='y-val' options="c2;c3;c4"/>
                 <duration seconds="1"/>
             </snode-tone>
              <snode-tone step="5" description="">
                 <duration seconds="2"/>
             </snode-tone>
             <snode-tone step="6" description="">
-                <tone track="saw" note="g3"/>
+                <tone track="atari" note="g3"/>
                 <duration seconds="0.75"/>
             </snode-tone>
             <snode-tone step="7" description="">
                 <duration seconds="0.25"/>
             </snode-tone>
             <snode-tone step="8" description="">
-                <tone track="saw" note="g3"/>
+                <tone track="atari" note="g3"/>
                 <duration seconds="0.75"/>
             </snode-tone>
             <snode-tone step="9" description="">
                 <duration seconds="0.25"/>
             </snode-tone>
             <snode-tone step="10" description="">
-                <variable-tone track="saw" param='z-val' options="g2;g3;g4"/>
+                <variable-tone track="atari" param='z-val' options="g2;g3;g4"/>
                 <duration seconds="1"/>
             </snode-tone>
         </soneme>

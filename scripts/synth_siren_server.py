@@ -87,11 +87,14 @@ def execute_trigger(req, soneme):
         
     # We need an audio segment, so load in the duck, then replace the data with our mixer's data.
     dir = siren_config.clip_location
-    duck_fn = dir + '/duck_test.ogg'
+    duck_fn = dir + '/duck_test.wav'
 
     a = AudioSegment.from_ogg(duck_fn)
     a._data = mixer.sample_data()
     play(a)
+
+    if siren_config.save_wavs:
+        mixer.write_wav(siren_config.clip_location + '/synth/' + soneme.name + '.wav')
 
     return True
             
@@ -137,11 +140,14 @@ def execute_directional(req, soneme):
 
     # We need an audio segment, so load in the duck, then replace the data with our mixer's data.
     dir = siren_config.clip_location
-    duck_fn = dir + '/duck_test.ogg'
+    duck_fn = dir + '/duck_test.wav'
 
     a = AudioSegment.from_ogg(duck_fn)
     a._data = mixer.sample_data()
     play(a)
+
+    if siren_config.save_wavs:
+        mixer.write_wav(siren_config.clip_location + '/synth/' + soneme.name + '.wav')
 
     return True
 
@@ -180,11 +186,14 @@ def execute_quantity(req, soneme):
 
     # We need an audio segment, so load in the duck, then replace the data with our mixer's data.
     dir = siren_config.clip_location
-    duck_fn = dir + '/duck_test.ogg'
+    duck_fn = dir + '/duck_test.wav'
 
     a = AudioSegment.from_ogg(duck_fn)
     a._data = mixer.sample_data()
     play(a)
+
+    if siren_config.save_wavs:
+        mixer.write_wav(siren_config.clip_location + '/synth/' + soneme.name + '.wav')
 
     return True
 
