@@ -24,6 +24,33 @@ from proteus.tone import Tone, VariableTone, RunTone
 rospy.init_node('ogg_siren_server', argv=None, anonymous=True)
 siren_config = None
 
+# Fit transform into text description of cardinal direction
+def cardinalize(transform):
+    q = transform.rotation
+    # rpy = euler_from_quaternion([q.x, q.y, q.z, q.w]) #We only actually need pitch and yaw, roll is ignored here.
+    rpy = [q.x, q.y, q.z] # THIS IS A DIRTY HACK
+
+    ret = "" # Return string.
+
+    # Pitch handling
+    if rpy[1] > 0:
+        ret+= " up"
+    elif rpy[1] < 0:
+        ret+= " down"
+
+    # Add a conjunction if there's pitch involved.
+    if rpy[1] != 0 and rpy[2] != 0:
+        ret+= " and "
+
+    # Yaw handling
+    if rpy[2] > 0:
+        ret+= "left"
+    elif rpy[2] < 0:
+        ret += "right"
+
+    return ret
+
+
 # Farms out the execution of the soneme to the appropriate function
 def service_cb(req, soneme):
     # # HACK prime the audio system with some silence.
@@ -150,8 +177,10 @@ def execute_directional(req, soneme):
     a._data = mixer.sample_data()
     play(a)
 
+    dir_string = cardinalize(req.transform).replace(' ', '_')
+
     if siren_config.save_wavs:
-        mixer.write_wav(siren_config.clip_location + '/synth/' + soneme.name + '.wav')
+        mixer.write_wav(siren_config.clip_location + '/synth/' + soneme.name + '_' + dir_string + '.wav')
 
     return True
 
@@ -197,7 +226,7 @@ def execute_quantity(req, soneme):
     play(a)
 
     if siren_config.save_wavs:
-        mixer.write_wav(siren_config.clip_location + '/synth/' + soneme.name + '.wav')
+        mixer.write_wav(siren_config.clip_location + '/synth/' + soneme.name + '_' + str(int(req.quantity * 100)) + '.wav')
 
     return True
 

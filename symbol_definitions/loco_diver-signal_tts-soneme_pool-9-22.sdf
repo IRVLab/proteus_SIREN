@@ -7,22 +7,22 @@
     <sonemes>
         <soneme name="Affirmative" id="affirmative">
             <snode-speech step="0" description="">
-                <speech volume="1.0" speed="1" text="Affirmative"></speech>
+                <speech volume="1.0" speed="1" text="Yes"></speech>
             </snode-speech>
         </soneme>
         <soneme name="Negative" id="negative">
             <snode-speech step="0" description="">
-                <speech volume="1.0" speed="1" text="Negative"></speech>
+                <speech volume="1.0" speed="1" text="No"></speech>
             </snode-speech>
         </soneme>
         <soneme name="Attention" id="attention">
             <snode-speech step="0" description="">
-                <speech volume="1.0" speed="1" text="Attention!"></speech>
+                <speech volume="1.0" speed="1" text="Pay Attention!"></speech>
             </snode-speech>
         </soneme>        
         <soneme name="Wait For Command" id="wait_for_command">
             <snode-speech step="0" description="">
-                <speech volume="1.0" speed="1" text="Waiting for command"></speech>
+                <speech volume="1.0" speed="1" text="I'm waiting for a command!"></speech>
             </snode-speech>
         </soneme>
         <soneme name="Follow Me" id="follow_me">
@@ -32,7 +32,7 @@
         </soneme>
         <soneme name="Follow You" id="follow_you">
             <snode-speech step="0" description="">
-                <speech volume="1.0" speed="1" text="I'll follow you"></speech>
+                <speech volume="1.0" speed="1" text="I'm going to follow you"></speech>
             </snode-speech>
         </soneme>
         <soneme name="Come To Me" id="come">
@@ -42,12 +42,12 @@
         </soneme>
         <soneme name="Danger" id="danger">
             <snode-speech step="0" description="">
-                <speech volume="1.0" speed="1" text="Danger nearby"></speech>
+                <speech volume="1.0" speed="1" text="Danger nearby!"></speech>
             </snode-speech>
         </soneme>
         <soneme name="Malfunction" id="malfunction">
             <snode-speech step="0" description="">
-                <speech volume="1.0" speed="1" text="Malfunction"></speech>
+                <speech volume="1.0" speed="1" text="I'm experiencing an issue."></speech>
             </snode-speech>
         </soneme>
         <soneme name="Go To Direction" id="go_direction">
@@ -62,7 +62,7 @@
         </soneme>
         <soneme name="Which Way" id="which_way">
             <snode-speech step="0" description="">
-                <speech volume="1.0" speed="1" text="Which way?"></speech>
+                <speech volume="1.0" speed="1" text="Which way are we going?"></speech>
             </snode-speech>
         </soneme>
         <soneme name="Remaining Battery" id="battery_remaining">
