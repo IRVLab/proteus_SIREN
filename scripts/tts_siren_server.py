@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+from email.policy import default
 import rospy
 from rosnode import get_node_names
 # from tf.transformations import euler_from_quaternion, quaternion_from_euler
@@ -15,6 +16,7 @@ from proteus.siren import SirenConfig
 
 rospy.init_node('ogg_siren_server', argv=None, anonymous=True)
 siren_config = None
+default_voice = None
 
 # Fit transform into text description of cardinal direction
 def cardinalize(transform):
@@ -45,6 +47,18 @@ def cardinalize(transform):
 # Fit quantity into available bins.
 def bin_quant(quantity, bins):
     return min(bins, key=lambda x:abs(x-quantity))
+
+def text_cb(msg):
+    global default_voice
+
+    rospy.loginfo(f"Saying received data {msg.data}")
+    # HACK
+    fname = siren_config.clip_location + '/tts/last_dynamic.wav'
+    with open(fname, 'wb') as fstream:
+        fstream.write(default_voice.to_audio(msg.data))
+
+        a = AudioSegment.from_wav(fname)
+        play(a)
 
 
 # Farms out the execution of the soneme to the appropriate function
@@ -207,6 +221,23 @@ if __name__ == '__main__':
 
         rospy.loginfo('Advertising a service for soneme %s at service endpoint: %s'%(soneme.id, service_name))
         rospy.Service(service_name, service_class, lambda req, soneme=soneme: service_cb(req, soneme))
+
+    # If a dynamic input has been defined, we need to prepare a topic subscriber with callbacks.
+    if siren_config.dynamic_input:
+        rospy.loginfo("Dynamic input detected!")
+
+        rospy.loginfo("Creating default voice for dynamic input")
+        default_voice = Voice(lang=siren_config.voice_language, speed=int((siren_config.voice_wpm)), volume=(siren_config.volume ), voice_id= siren_config.voice_id)
+        default_voice.say("hello")
+
+        topic_name = 'siren/tts/' + siren_config.dynamic_input.topic
+        if siren_config.dynamic_input.type.lower() == "string":
+            from std_msgs.msg import String
+            rospy.loginfo(f"Creating dynamic input topic at {topic_name}.")
+            rospy.Subscriber(topic_name, String, text_cb)
+        else:
+            rospy.logerr("Dynamic input with unimplemented topic type sent.")
+
 
     rate = rospy.Rate(10)
     while not rospy.is_shutdown():

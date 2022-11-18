@@ -52,3 +52,4 @@ qtcreator-*
 # Catkin custom files
 CATKIN_IGNORE
 audio_files/.*
+audio_files/tts/last_dynamic.wav

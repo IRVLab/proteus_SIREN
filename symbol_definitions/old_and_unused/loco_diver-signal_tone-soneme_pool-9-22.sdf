@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<siren-definition>
+    <siren-config>
+        <clips pkg="proteus_siren" directory="audio_files" volume="1.0"></clips>
+        <synth-track id="nintendo" wave="square" vibrato="0" variance="0" attack="0.001" decay="0.01"></synth-track>
+        <synth-track id="atari" wave="triangle" vibrato="0" variance="0" attack="0.01" decay="0.025"></synth-track>
+        <synth-track id="atari-fade" wave="triangle" vibrato="0" variance="0" attack="0.01" decay="3"></synth-track>
+        <synth-track id="nintendo-fade" wave="square" vibrato="0" variance="0" attack="0.01" decay="3"></synth-track>
+        <synth-track id="fear" wave="square" vibrato="5" variance="10" attack="0.001" decay="0.01"></synth-track>
+        <synth-track id="woozy" wave="square" vibrato="2" variance="25" attack="0.001" decay="0.01"></synth-track>
+    </siren-config>
+    <sonemes>
+        <soneme name="Affirmative" id="affirmative">
+            <snode-tone step="0" description="">
+                <tone track="nintendo" note="c3"></tone>
+                <duration seconds="0.1"></duration>
+            </snode-tone>
+            <snode-tone step="1" description="">
+                <duration seconds="0.1"></duration>
+            </snode-tone>
+            <snode-tone step="2" description="">
+                <tone track="nintendo" note="e3"></tone>
+                <duration seconds="0.1"></duration>
+            </snode-tone>
+            <snode-tone step="3" description="">
+                <duration seconds="0.1"></duration>
+            </snode-tone>
+            <snode-tone step="4" description="">
+                <tone track="nintendo" note="g3"></tone>
+                <duration seconds="1"></duration>
+            </snode-tone>
+        </soneme>
+        <soneme name="Negative" id="negative">
+            <snode-tone step="0" description="">
+                <tone track="nintendo" note="g3"></tone>
+                <duration seconds="0.1"></duration>
+            </snode-tone>
+            <snode-tone step="1" description="">
+                <duration seconds="0.1"></duration>
+            </snode-tone>
+            <snode-tone step="2" description="">
+                <tone track="nintendo" note="eb3"></tone>
+                <duration seconds="0.1"></duration>
+            </snode-tone>
+            <snode-tone step="3" description="">
+                <duration seconds="0.1"></duration>
+            </snode-tone>
+            <snode-tone step="4" description="">
+                <tone track="nintendo" note="c3"></tone>
+                <duration seconds="1"></duration>
+            </snode-tone>
+        </soneme>
+        <soneme name="Attention" id="attention">
+            <snode-tone step="0" description="">
+                <tone track="nintendo" note="b3"></tone>
+                <duration seconds="0.25"></duration>
+            </snode-tone>
+            <snode-tone step="1" description="">
+                <duration seconds="0.25"></duration>
+            </snode-tone>
+            <snode-tone step="2" description="">
+                <tone track="nintendo" note="b3"></tone>
+                <duration seconds="0.25"></duration>
+            </snode-tone>
+            <snode-tone step="3" description="">
+                <duration seconds="0.25"></duration>
+            </snode-tone>
+            <snode-tone step="4" description="">
+                <tone track="nintendo" note="b3"></tone>
+                <duration seconds="0.25"></duration>
+            </snode-tone>
+            <snode-tone step="5" description="">
+                <duration seconds="0.25"></duration>
+            </snode-tone>
+            <snode-tone step="6" description="">
+                <tone track="nintendo" note="f4"></tone>
+                <duration seconds="2"></duration>
+            </snode-tone>            
+        </soneme>
+        <soneme name="Follow Me" id="follow_me">
+            <snode-tone step="0" description="">
+                <tone track="atari" note="g3"></tone>
+                <duration seconds="0.25"></duration>
+            </snode-tone>
+            <snode-tone step="1" description="">
+                <duration seconds="0.1"></duration>
+            </snode-tone>
+            <snode-tone step="2" description="">
+                <tone track="atari" note="g3"></tone>
+                <duration seconds="0.1"></duration>
+            </snode-tone>
+            <snode-tone step="3" description="">
+                <duration seconds="0.01"></duration>
+            </snode-tone>
+            <snode-tone step="5" description="">
+                <tone track="atari" note="g3"></tone>
+                <duration seconds="0.15"></duration>
+            </snode-tone>
+            <snode-tone step="6" description="">
+                <duration seconds="0.01"></duration>
+            </snode-tone>
+            <snode-tone step="7" description="">
+                <tone track="atari" note="d4"></tone>
+                <duration seconds="1.5"></duration>
+            </snode-tone>
+        </soneme>
+        <soneme name="Follow You" id="follow_you">
+            <snode-tone step="0" description="">
+                <tone track="atari" note="e3"></tone>
+                <duration seconds="0.25"></duration>
+            </snode-tone>
+            <snode-tone step="1" description="">
+                <duration seconds="0.25"></duration>
+            </snode-tone>
+            <snode-tone step="2" description="">
+                <tone track="atari" note="c3"></tone>
+                <duration seconds="0.25"></duration>
+            </snode-tone>
+            <snode-tone step="3" description="">
+                <duration seconds="0.25"></duration>
+            </snode-tone>
+            <snode-tone step="4" description="">
+                <tone track="atari" note="d3"></tone>
+                <duration seconds="1.5"></duration>
+            </snode-tone>
+        </soneme>
+        <soneme name="Come To Me" id="come">
+            <snode-tone step="0" description="">
+                <tone track="atari" note="g3"></tone>
+                <duration seconds="0.5"></duration>
+            </snode-tone>
+            <snode-tone step="1" description="">
+                <duration seconds="0.1"></duration>
+            </snode-tone>
+            <snode-tone step="2" description="">
+                <tone track="atari" note="c4"></tone>
+                <duration seconds="0.25"></duration>
+            </snode-tone>
+            <snode-tone step="3" description="">
+                <duration seconds="0.1"></duration>
+            </snode-tone>
+            <snode-tone step="4" description="">
+                <tone track="atari" note="g3"></tone>
+                <duration seconds="1"></duration>
+            </snode-tone>
+        </soneme>
+        <soneme name="Danger" id="danger">
+            <snode-tone step="0" description="">
+                <tone track="fear" note="b3"></tone>
+                <duration seconds="0.75"></duration>
+            </snode-tone>
+            <snode-tone step="1" description="">
+                <duration seconds="0.25"></duration>
+            </snode-tone>
+            <snode-tone step="2" description="">
+                <tone track="fear" note="bb3"></tone>
+                <duration seconds="0.75"></duration>
+            </snode-tone>
+            <snode-tone step="3" description="">
+                <duration seconds="0.25"></duration>
+            </snode-tone>
+            <snode-tone step="4" description="">
+                <tone track="fear" note="a3"></tone>
+                <duration seconds="0.75"></duration>
+            </snode-tone>
+            <snode-tone step="5" description="">
+                <duration seconds="0.25"></duration>
+            </snode-tone>
+            <snode-tone step="6" description="">
+                <tone track="fear" note="ab3"></tone>
+                <duration seconds="1.5"></duration>
+            </snode-tone>
+        </soneme>
+        <soneme name="Malfunction" id="malfunction">
+            <snode-tone step="0" description="">
+                <tone track="woozy" note="a3" end_note="c"></tone>
+                <duration seconds="6"></duration>
+            </snode-tone>
+        </soneme>
+        <soneme name="Go To Direction" id="go_direction">
+            <snode-tone step="0" description="">
+                <tone track="atari" note="c4"/>
+                <duration seconds="0.1"/>
+            </snode-tone>
+            <snode-tone step="1" description="">
+                <variable-tone track="atari" param='y-val' options="b3;c4;d4"/>
+                <duration seconds="0.1"/>
+            </snode-tone>
+            <snode-tone step="2" description="">
+                <variable-tone track="atari" param='y-val' options="a3;c4;e4"/>
+                <duration seconds="0.1"/>
+            </snode-tone>
+            <snode-tone step="3" description="">
+                <variable-tone track="atari" param='y-val' options="g3;c4;f4"/>
+                <duration seconds="0.1"/>
+            </snode-tone>
+            <snode-tone step="4" description="">
+                <tone track="atari" note="c4"/>
+                <duration seconds="0.1"/>
+            </snode-tone>
+            <snode-tone step="5" description="">
+                <variable-tone track="atari" param='y-val' options="b3;c4;d4"/>
+                <duration seconds="0.1"/>
+            </snode-tone>
+            <snode-tone step="6" description="">
+                <variable-tone track="atari" param='y-val' options="a3;c4;e4"/>
+                <duration seconds="0.1"/>
+            </snode-tone>
+            <snode-tone step="7 " description="">
+                <variable-tone track="atari" param='y-val' options="g3;c4;f4"/>
+                <duration seconds="0.1"/>
+            </snode-tone>
+            <snode-tone step="8" description=""> 
+                <duration seconds="1.0"/>
+            </snode-tone>
+            <snode-tone step="0" description="">
+                <tone track="atari" note="g4"/>
+                <duration seconds="0.1"/>
+            </snode-tone>
+            <snode-tone step="1" description="">
+                <variable-tone track="atari" param='z-val' options="f4;g4;a4"/>
+                <duration seconds="0.1"/>
+            </snode-tone>
+            <snode-tone step="2" description="">
+                <variable-tone track="atari" param='z-val' options="e4;g4;b4"/>
+                <duration seconds="0.1"/>
+            </snode-tone>
+            <snode-tone step="3" description="">
+                <variable-tone track="atari" param='z-val' options="d4;g4;c5"/>
+                <duration seconds="0.1"/>
+            </snode-tone>
+            <snode-tone step="4" description="">
+                <tone track="atari" note="g4"/>
+                <duration seconds="0.1"/>
+            </snode-tone>
+            <snode-tone step="5" description="">
+                <variable-tone track="atari" param='z-val' options="f4;g4;a4"/>
+                <duration seconds="0.1"/>
+            </snode-tone>
+            <snode-tone step="6" description="">
+                <variable-tone track="atari" param='z-val' options="e4;g4;b4"/>
+                <duration seconds="0.1"/>
+            </snode-tone>
+            <snode-tone step="7 " description="">
+                <variable-tone track="atari" param='z-val' options="d4;g4;c5"/>
+                <duration seconds="0.1"/>
+            </snode-tone>
+        </soneme>
+        <soneme name="Stay" id="stay">
+            <snode-tone step="0" description="">
+                <tone track="atari" note="f3"></tone>
+                <duration seconds="0.5"></duration>
+            </snode-tone>
+            <snode-tone step="1" description="">
+                <duration seconds="0.1"></duration>
+            </snode-tone>
+            <snode-tone step="2" description="">
+                <tone track="atari" note="d3"></tone>
+                <duration seconds="0.5"></duration>
+            </snode-tone>
+            <snode-tone step="3" description="">
+                <duration seconds="0.1"></duration>
+            </snode-tone>
+            <snode-tone step="4" description="">
+                <tone track="atari" note="d3"></tone>
+                <duration seconds="2"></duration>
+            </snode-tone>
+        </soneme>
+        <soneme name="Wait For Command" id="wait_for_command">
+            <snode-tone step="0" description="">
+                <tone track="nintendo-fade" note="g3"></tone>
+                <duration seconds="2"></duration>
+            </snode-tone>
+            <snode-tone step="1" description="">
+                <duration seconds="0.25"></duration>
+            </snode-tone>
+            <snode-tone step="2" description="">
+                <tone track="nintendo-fade" note="g3"></tone>
+                <duration seconds="2"></duration>
+            </snode-tone>
+            <snode-tone step="3" description="">
+                <duration seconds="0.25"></duration>
+            </snode-tone>
+            <snode-tone step="4" description="">
+                <tone track="nintendo-fade" note="d3"></tone>
+                <duration seconds="2"></duration>
+            </snode-tone>
+            <snode-tone step="5" description="">
+                <duration seconds="0.25"></duration>
+            </snode-tone>
+            <snode-tone step="6" description="">
+                <tone track="nintendo-fade" note="d3"></tone>
+                <duration seconds="2"></duration>
+            </snode-tone>
+        </soneme>
+        <soneme name="Which Way" id="which_way">
+            <snode-tone step="0" description="">
+                <tone track="atari" note="d3"></tone>
+                <duration seconds="0.2"></duration>
+            </snode-tone>
+            <snode-tone step="1" description="">
+                <tone track="atari" note="e3"></tone>
+                <duration seconds="0.2"></duration>
+            </snode-tone>
+            <snode-tone step="2" description="">
+                <tone track="atari" note="g3"></tone>
+                <duration seconds="0.2"></duration>
+            </snode-tone>
+            <snode-tone step="3" description="">
+                <tone track="atari-fade" note="b3"></tone>
+                <duration seconds="2.5"></duration>
+            </snode-tone>
+        </soneme>
+        <soneme name="Remaining Battery" id="battery_remaining">
+            <snode-tone step="0" description="">
+                <tone track="nintendo" note="c3"/>
+                <duration seconds="0.75"/>
+            </snode-tone>
+            <snode-tone step="1" description="">
+                <duration seconds="0.25"/>
+            </snode-tone>
+            <snode-tone step="2" description="">
+                <tone track="nintendo" note="c4"/>
+                <duration seconds="0.75"/>
+            </snode-tone>
+            <snode-tone step="3" description="">
+                <duration seconds="1"/>
+            </snode-tone>
+            <snode-tone step="4" description="">
+                <run-tone track="nintendo" start_note="c3" stop_note="c4" glissando="True"/>
+                <quantity min="0.0" max="1.0" parameter="quantity" display_on="run-tone"/>
+                <duration seconds="2"/>
+            </snode-tone>
+        </soneme>
+    </sonemes>
+</siren-definition>
