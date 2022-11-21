@@ -191,7 +191,7 @@
                 <tone track="atari" note="c4"/>
                 <duration seconds="0.1"/>
             </snode-tone>
-            <snode-tone step="3" description="">c4
+            <snode-tone step="3" description="c4">
                 <duration seconds="0.1"/>
             </snode-tone>
             <snode-tone step="5" description="">
