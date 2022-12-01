@@ -228,7 +228,7 @@ if __name__ == '__main__':
 
         rospy.loginfo("Creating default voice for dynamic input")
         default_voice = Voice(lang=siren_config.voice_language, speed=int((siren_config.voice_wpm)), volume=(siren_config.volume ), voice_id= siren_config.voice_id)
-        default_voice.say("hello")
+        # default_voice.say("hello")
 
         topic_name = 'siren/tts/' + siren_config.dynamic_input.topic
         if siren_config.dynamic_input.type.lower() == "string":

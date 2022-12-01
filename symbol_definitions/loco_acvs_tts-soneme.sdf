@@ -2,7 +2,7 @@
 <siren-definition>
     <siren-config>
         <clips pkg="proteus_siren" directory="audio_files" volume="1.0"></clips>
-        <voice lang="us" id="2" wpm="150" volume="5"></voice>
+        <voice lang="us" id="2" wpm="120" volume="4"></voice>
         <dynamic-input topic="tts_input" type="String"></dynamic-input>
     </siren-config>
     <sonemes>
