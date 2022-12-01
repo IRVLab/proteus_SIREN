@@ -8,7 +8,7 @@ from pydub.playback import play as pydub_play
 
 import sys
 import xml.etree.ElementTree as ET
-from proteus.srv import SymbolTrigger, SymbolDirectional, SymbolTarget, SymbolQuantity
+from proteus_msgs.srv import SymbolTrigger, SymbolDirectional, SymbolTarget, SymbolQuantity
 from proteus.soneme import Soneme, SNode, SNodeClip, SNodeSpeech
 from proteus.siren import SirenConfig
 

@@ -16,7 +16,7 @@ from pydub.playback import play
 import sys
 from os.path import exists
 import xml.etree.ElementTree as ET
-from proteus.srv import SymbolTrigger, SymbolDirectional, SymbolTarget, SymbolQuantity
+from proteus_msgs.srv import SymbolTrigger, SymbolDirectional, SymbolTarget, SymbolQuantity
 from proteus.soneme import Soneme, SNode, SNodeTone
 from proteus.siren import SirenConfig
 from proteus.tone import Tone, VariableTone, RunTone
