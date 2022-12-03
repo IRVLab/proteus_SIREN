@@ -11,6 +11,7 @@ from pydub.playback import play
 import sys
 import xml.etree.ElementTree as ET
 from proteus_msgs.srv import SymbolTrigger, SymbolDirectional, SymbolTarget, SymbolQuantity
+from proteus import Vector
 from proteus.soneme import Soneme, SNode, SNodeClip, SNodeSpeech
 from proteus.siren import SirenConfig
 
@@ -167,8 +168,9 @@ if __name__ == '__main__':
 
      # Find soneme language definition file
     rospy.loginfo("Loading vector information...")
-    siren_info = rospy.get_param('vectors/out/TTSSiren')
-    siren_def_file = siren_info['definition_file']
+    siren_params = rospy.get_param('vectors/out/TTSSiren')
+    vector_obj = Vector()
+    vector_obj.parse_from_rosparam(siren_params)
 
     # Find symbol definitions
     rospy.loginfo("Loading symbol information...")
@@ -179,7 +181,7 @@ if __name__ == '__main__':
     sonemes = dict()
 
     #Load XML file
-    tree = ET.parse(siren_def_file)
+    tree = ET.parse(vector_obj.definition_file)
     root = tree.getroot()    
 
     for item in root:
@@ -217,7 +219,7 @@ if __name__ == '__main__':
         else:
             rospy.logwarn("Unexpected call type {} for soneme {}".format(soneme.call_type, soneme.id))
 
-        service_name = 'siren/tts/'+ soneme.name.replace(' ', '_')
+        service_name = vector_obj.namespace_prefix + soneme.name.replace(' ', '_')
 
         rospy.loginfo('Advertising a service for soneme %s at service endpoint: %s'%(soneme.id, service_name))
         rospy.Service(service_name, service_class, lambda req, soneme=soneme: service_cb(req, soneme))
@@ -230,7 +232,7 @@ if __name__ == '__main__':
         default_voice = Voice(lang=siren_config.voice_language, speed=int((siren_config.voice_wpm)), volume=(siren_config.volume ), voice_id= siren_config.voice_id)
         # default_voice.say("hello")
 
-        topic_name = 'siren/tts/' + siren_config.dynamic_input.topic
+        topic_name = vector_obj.namespace_prefix + siren_config.dynamic_input.topic
         if siren_config.dynamic_input.type.lower() == "string":
             from std_msgs.msg import String
             rospy.loginfo(f"Creating dynamic input topic at {topic_name}.")

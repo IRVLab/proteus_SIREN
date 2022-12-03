@@ -17,6 +17,7 @@ import sys
 from os.path import exists
 import xml.etree.ElementTree as ET
 from proteus_msgs.srv import SymbolTrigger, SymbolDirectional, SymbolTarget, SymbolQuantity
+from proteus import Vector
 from proteus.soneme import Soneme, SNode, SNodeTone
 from proteus.siren import SirenConfig
 from proteus.tone import Tone, VariableTone, RunTone
@@ -251,8 +252,10 @@ if __name__ == '__main__':
 
      # Find soneme language definition file
     rospy.loginfo("Loading vector information...")
-    siren_info = rospy.get_param('vectors/out/TonalSiren')
-    siren_def_file = siren_info['definition_file']
+    siren_params = rospy.get_param('vectors/out/TonalSiren')
+    vector_obj = Vector()
+    vector_obj.parse_from_rosparam(siren_params)
+
 
     # Find symbol definitions
     rospy.loginfo("Loading symbol information...")
@@ -263,7 +266,7 @@ if __name__ == '__main__':
     sonemes = dict()
 
     #Load XML file
-    tree = ET.parse(siren_def_file)
+    tree = ET.parse(vector_obj.definition_file)
     root = tree.getroot()    
 
     for item in root:
@@ -300,7 +303,7 @@ if __name__ == '__main__':
         else:
             rospy.logwarn("Unexpected call type {} for soneme {}".format(soneme.call_type, soneme.id))
 
-        service_name = 'siren/synth/'+ soneme.name.replace(' ', '_')
+        service_name = vector_obj.namepsace_prefix + soneme.name.replace(' ', '_')
 
         rospy.loginfo('Advertising a service for soneme %s at service endpoint: %s'%(soneme.id, service_name))
         rospy.Service(service_name, service_class, lambda req, soneme=soneme: service_cb(req, soneme))
