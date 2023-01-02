@@ -17,10 +17,10 @@ import sys
 from os.path import exists
 import xml.etree.ElementTree as ET
 from proteus_msgs.srv import SymbolTrigger, SymbolDirectional, SymbolTarget, SymbolQuantity
-from proteus import Vector
-from proteus.soneme import Soneme, SNode, SNodeTone
-from proteus.siren import SirenConfig
-from proteus.tone import Tone, VariableTone, RunTone
+from proteus.vector.vector import Vector
+from proteus.vector.siren import Soneme, SNode, SNodeTone
+from proteus.vector.siren import SirenConfig
+from proteus.symbol.tone import Tone, VariableTone, RunTone
 
 rospy.init_node('ogg_siren_server', argv=None, anonymous=True)
 siren_config = None
@@ -253,8 +253,8 @@ if __name__ == '__main__':
      # Find soneme language definition file
     rospy.loginfo("Loading vector information...")
     siren_params = rospy.get_param('vectors/out/TonalSiren')
-    vector_obj = Vector()
-    vector_obj.parse_from_rosparam(siren_params)
+    vector_obj = Vector('out')
+    vector_obj.parse_from_rosparam('TonalSiren', siren_params)
 
 
     # Find symbol definitions
@@ -281,12 +281,12 @@ if __name__ == '__main__':
             siren_config.parse_from_xml(item)
 
     # Check for symbol matchup.
-    for sym in symbols:
-        for key,s in sonemes.items():
-            if sym == key:
-                rospy.loginfo("Found match beteween symbol %s and soneme %s, associating data."%(sym, key))
-                rospy.logdebug("Call type: %s"%(symbols.get(sym).get('call_type')))
-                s.set_call_type(symbols.get(sym).get('call_type'))
+    for sname, sym in symbols.items():
+        for key, s in sonemes.items():
+            if sym['id'] == s.id:
+                rospy.loginfo(f"Found match beteween symbol {sym['id']} and soneme {s.id}, associating data.")
+                rospy.logdebug(f"Call type: {sym['input_required']}")
+                s.set_call_type(sym['input_required'])
                 break
 
     # Setup service calls
@@ -303,7 +303,7 @@ if __name__ == '__main__':
         else:
             rospy.logwarn("Unexpected call type {} for soneme {}".format(soneme.call_type, soneme.id))
 
-        service_name = vector_obj.namepsace_prefix + soneme.name.replace(' ', '_')
+        service_name = vector_obj.namespace_prefix + soneme.name.replace(' ', '_')
 
         rospy.loginfo('Advertising a service for soneme %s at service endpoint: %s'%(soneme.id, service_name))
         rospy.Service(service_name, service_class, lambda req, soneme=soneme: service_cb(req, soneme))

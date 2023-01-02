@@ -11,9 +11,9 @@ from pydub.playback import play
 import sys
 import xml.etree.ElementTree as ET
 from proteus_msgs.srv import SymbolTrigger, SymbolDirectional, SymbolTarget, SymbolQuantity
-from proteus import Vector
-from proteus.soneme import Soneme, SNode, SNodeClip, SNodeSpeech
-from proteus.siren import SirenConfig
+from proteus.vector.vector import Vector
+from proteus.vector.siren import Soneme, SNode, SNodeClip, SNodeSpeech
+from proteus.vector.siren import SirenConfig
 
 rospy.init_node('ogg_siren_server', argv=None, anonymous=True)
 siren_config = None
@@ -169,8 +169,8 @@ if __name__ == '__main__':
      # Find soneme language definition file
     rospy.loginfo("Loading vector information...")
     siren_params = rospy.get_param('vectors/out/TTSSiren')
-    vector_obj = Vector()
-    vector_obj.parse_from_rosparam(siren_params)
+    vector_obj = Vector('out')
+    vector_obj.parse_from_rosparam('TTSSiren',siren_params)
 
     # Find symbol definitions
     rospy.loginfo("Loading symbol information...")
@@ -196,13 +196,12 @@ if __name__ == '__main__':
             siren_config.parse_from_xml(item)
 
     # Check for symbol matchup.
-    for sym in symbols:
-        for key in sonemes:
-            s = sonemes[key]
-            if sym == s.id:
-                rospy.loginfo("Found match beteween symbol %s and soneme %s, associating data."%(sym, s.id))
-                rospy.logdebug("Call type: %s"%(symbols.get(sym).get('call_type')))
-                s.set_call_type(symbols.get(sym).get('call_type'))
+    for sname, sym in symbols.items():
+        for key, s in sonemes.items():
+            if sym['id'] == s.id:
+                rospy.loginfo(f"Found match beteween symbol {sym['id']} and soneme {s.id}, associating data.")
+                rospy.logdebug(f"Call type: {sym['input_required']}")
+                s.set_call_type(sym['input_required'])
                 break
     
     # Setup service calls
