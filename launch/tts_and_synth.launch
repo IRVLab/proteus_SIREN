@@ -1,6 +1,6 @@
 <launch>
     <group ns="loco/proteus/">
-        <node name="loco_proteus_tts_siren" pkg="proteus_siren" type="tts_siren_server.py" output="screen"/>
-        <node name="loco_proteus_synth_siren" pkg="proteus_siren" type="synth_siren_server.py" output="screen"/>
+        <node name="loco_proteus_tts_siren" pkg="proteus_siren" type="tts_siren_server.py" output="screen" respawn="True"/>
+        <node name="loco_proteus_synth_siren" pkg="proteus_siren" type="synth_siren_server.py" output="screen" respawn="True"/>
     </group>
 </launch>
